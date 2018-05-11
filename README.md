@@ -7,6 +7,8 @@
 - Tools -> Boards Manager -> Search for: Adafruit SAMD Boards -> Install
 - Tools -> Board -> Select: Adafruit Feather M0
 - Connect your v^SPEED mini to your computer
+  - The vario must be switched on
+  - The usb cable must not be a "charge only" cable
 - Tools -> Port -> Select any port for now
 - Sketch -> Upload
 
