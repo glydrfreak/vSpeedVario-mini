@@ -66,6 +66,8 @@ This is an open source project, with all public files available at <a href="http
   - `START_UP_BLUETOOTH_MODE`= <b>0</b>; Default [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
 - Tools -> Board -> Select: Adafruit Feather M0
 - Connect your v^SPEED mini to your computer
+  - The vario must be switched on
+  - The usb cable must not be a "charge only" cable
 - Tools -> Port -> Select the correct port
 - Sketch -> Upload
 
