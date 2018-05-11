@@ -1,4 +1,21 @@
-# v^SPEED Vario mini 
+<table float="center">
+  <tr>
+    <td align="center" width=50%>
+      <h1>v^SPEED Vario mini</h1>
+      Contents:</br>
+      <a href="https://www.ebay.com/usr/glydrfreak">Shop</a></br>
+      <a href="#start-here">Start Here</a> </br>
+      <a href="#custom-settings">Custom Settings</a></br>
+      <a href="#bluetooth-operation">Bluetooth Operation</a> </br>
+      <a href="#firmware-updates">Firmware Updates</a> </br>
+    </td>
+    <td align="center"> 
+      <h3>DIY Paragliding Variometer</h3>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/logo.jpg" width=116> 
+      <h6>(Vertical Speed Indicator)</h6>
+    </td>
+  </tr>
+</table>
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
