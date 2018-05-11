@@ -25,7 +25,7 @@ class Default{
     bool MEASURE_BATTERY             = 1;    // [1]YES, [0]NO
 
     bool ENABLE_BLUETOOTH            = 1;    // [1]YES, [0]NO
-    int START_UP_BLUETOOTH_MODE      = 1;    // [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
+    int START_UP_BLUETOOTH_MODE      = 0;    // [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
 
 };
     
