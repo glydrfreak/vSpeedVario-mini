@@ -2,12 +2,16 @@
   <tr>
     <td align="center" width=50%>
       <h1>v^SPEED Vario mini</h1>
-      Contents:</br>
-      <a href="https://www.ebay.com/usr/glydrfreak">Shop</a></br>
+      <h3><a href="https://www.ebay.com/usr/glydrfreak">Shop</a></h3>
+      <h2>Contents:</h2>
+      <a href="#about">About</a></br>
       <a href="#start-here">Start Here</a> </br>
       <a href="#custom-settings">Custom Settings</a></br>
       <a href="#bluetooth-operation">Bluetooth Operation</a> </br>
       <a href="#firmware-updates">Firmware Updates</a> </br>
+    </td>
+    <td>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250>
     </td>
     <td align="center"> 
       <h3>DIY Paragliding Variometer</h3>
@@ -16,6 +20,11 @@
     </td>
   </tr>
 </table>
+
+
+### ABOUT
+This is an open source project, with all public files available at <a href="https://github.com/glydrfreak/vSpeed-Vario">the vSpeed-Vario repository</a>. The v^SPEED mini is based on PROTOTYPE6, which is found within that same repository. This variometer was designed to be compatible with the Arduino IDE for advanced usage, which allows users to modify the existing source to their pleasure. Here, in the repository you are currently viewing, you will find the most up-to-date source code for use in the Arduino IDE. The hardware is based on another open source product: <a href="https://learn.adafruit.com/adafruit-feather-m0-bluefruit-le/downloads">Adafruit's Bluefruit Feather M0</a>. The v^SPEED mini is basically just a Bluefruit Feather M0 development board, but without the header pins broken out, and with the added variometer circuitry.
+
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
@@ -48,14 +57,11 @@
   - Hold the volume up button while powering on the vario to boot up into iPhone mode.
   - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
     - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
-
 #### Android Users--
 - Download the v^SPEED Vario app from Google Play Store.
-
 #### iPhone Users--
 - Download Flyskyhy from the App Store.
-
-
+- While selecting the external vario model, choose `Skydrop` for the time being.
 
 
 ### FIRMWARE UPDATES
