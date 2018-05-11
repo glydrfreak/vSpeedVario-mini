@@ -37,6 +37,15 @@ This is an open source project, with all public files available at <a href="http
   - The usb cable must not be a "charge only" cable
 - Tools -> Port -> Select any port for now
 - Sketch -> Upload
+- Anytime you power on your vario, or upload a new sketch, you will hear two sequences of beeps:
+  - The first beep(s) indicates the bluetooth mode.
+    - No beep: Bluetooth disabled
+    - One beep: Android mode
+    - Two beeps: iPhone mode
+  - The second series of beeps indicates the battery level.
+    - Ascending: Battery is at least 75%
+    - Steady: Battery is at least 50%
+    - Descending: Battery is below 25%
 
 
 ### CUSTOM SETTINGS
