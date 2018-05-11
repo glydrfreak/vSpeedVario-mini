@@ -23,6 +23,24 @@
 - Sketch -> Upload
 
 
+### BLUETOOTH OPERATION
+- v^SPEED mini is compatible with both Android and iPhone.
+- You may change the bluetooth mode at startup:
+  - Hold the volume down button while powering on the vario to boot up into Android mode.
+    - After two minutes of no connection, the bluetooth transmission will be disabled to save battery and sample rate.
+  - Hold the volume up button while powering on the vario to boot up into iPhone mode.
+  - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
+    - you may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
+
+#### Android Users--
+- Download the v^SPEED Vario app from Google Play Store.
+
+#### iPhone Users--
+- Download Flyskyhy from the App Store.
+
+
+
+
 ### FIRMWARE UPDATES
 #### Source code last updated: `5/11/2018`
 - For the most up-to-date source code for your v^SPEED mini, download and extract the files in this repository and replace the existing files in your `vSpeed_mini` folder. 
