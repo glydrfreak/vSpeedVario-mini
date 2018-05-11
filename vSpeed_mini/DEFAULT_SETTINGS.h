@@ -16,8 +16,8 @@ class Default{
     float CLIMB_BEEP_TRIGGER       = 1.0;    // (Default 1.0 ft)
     float SINK_BEEP_TRIGGER       = -1.0;    // (Default -1.0 ft/s)
 
-    float CLIMB_PITCH_MAX        = 500.0;    // (Default 500.0 Hz)
-    float CLIMB_PITCH_MIN        = 350.0;    // (Default 300.0 Hz)
+    float CLIMB_PITCH_MAX        = 600.0;    // (Default 600.0 Hz)
+    float CLIMB_PITCH_MIN        = 400.0;    // (Default 400.0 Hz)
     
     float SINK_PITCH_MAX         = 250.0;    // (Default 250.0 Hz)
     float SINK_PITCH_MIN         = 150.0;    // (Default 150.0 Hz)

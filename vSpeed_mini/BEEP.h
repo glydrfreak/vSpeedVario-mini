@@ -30,7 +30,7 @@ private:
 	float beepDuration;
 	int beepPitch;
   int sinkPitch;
-  float leastClimb = 0.0;
+  float leastClimb = 1.0;
   float mostClimb = 10.0;
   float leastSink = -1.0;
   float mostSink = -10.0;
