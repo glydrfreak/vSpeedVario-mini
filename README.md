@@ -64,6 +64,8 @@ This is an open source project, with all public files available at <a href="http
   - `MEASURE_BATTERY`= <b>1</b>; [1]YES, [0]NO
   - `ENABLE_BLUETOOTH`= <b>1</b>; [1]YES, [0]NO
   - `START_UP_BLUETOOTH_MODE`= <b>0</b>; Default [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
+  - `ALTITUDE_UNITS`= <b>1</b>; Default [1]FEET, [2]METERS
+  - `VELOCITY_UNITS`= <b>1</b>; Default [1]FEET_PER_SECOND, [2]METERS_PER_SECOND, [3] FEET_PER_MINUTE
 - Tools -> Board -> Select: Adafruit Feather M0
 - Connect your v^SPEED mini to your computer
   - The vario must be switched on
