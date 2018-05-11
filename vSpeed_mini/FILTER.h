@@ -26,6 +26,8 @@ class FILTER1{//PRESSURE:
   static const int maxDataMemory = 200;   // make this number as small as possible without clipping the quantity of samples to be averaged
   bool f1 = true; 
   float previousData = 0;
+  bool rejectBadData = false;     // If any new data is greater than rejectionThreshold away from the previous data, reject if true;
+  int rejectionThreshold = 100; 
   
  public:
   //int AVERAGING_DURATION = 1000;     // Greater duration (max 1000 ms) means more samples averaged (see maxDataMemory set in FILTER.h)
@@ -43,6 +45,8 @@ class FILTER2{//ALTITUDE:
   static const int maxDataMemory = 200;   // make this number as small as possible without clipping the quantity of samples to be averaged
   bool f1 = true; 
   float previousData = 0;
+  bool rejectBadData = false;     // If any new data is greater than rejectionThreshold away from the previous data, reject if true;
+  int rejectionThreshold = 100; 
   
  public:
   //int AVERAGING_DURATION = 1000;     // Greater duration (max 1000 ms) means more samples averaged (see maxDataMemory set in FILTER.h)
@@ -60,6 +64,8 @@ private:
 	static const int maxDataMemory = 200;   // make this number as small as possible without clipping the quantity of samples to be averaged
 	bool f1 = true;
 	float previousData = 0;
+  bool rejectBadData = false;     // If any new data is greater than rejectionThreshold away from the previous data, reject if true;
+  int rejectionThreshold = 100; 
 
 public:
 	//int AVERAGING_DURATION = 1000;     // Greater duration (max 1000 ms) means more samples averaged (see maxDataMemory set in FILTER.h)
@@ -77,6 +83,8 @@ private:
   static const int maxDataMemory = 200;   // make this number as small as possible without clipping the quantity of samples to be averaged
   bool f1 = true;
   float previousData = 0;
+  bool rejectBadData = false;     // If any new data is greater than rejectionThreshold away from the previous data, reject if true;
+  int rejectionThreshold = 100; 
 
 public:
   //int AVERAGING_DURATION = 1000;     // Greater duration (max 1000 ms) means more samples averaged (see maxDataMemory set in FILTER.h)

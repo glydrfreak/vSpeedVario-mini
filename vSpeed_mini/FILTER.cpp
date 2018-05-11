@@ -33,7 +33,8 @@ float FILTER1::RUNNING_AVERAGE(float newData, int samplesPerSec, float averaging
   }
   else{ //do this the remaining times...
     for(int i = 1; i < samplesToAverage; i++){DATA[i-1] = DATA[i];} // Shift the DATA to make room for one more          
-    if(newData > previousData+30 || newData < previousData-30){
+    if(rejectBadData && (newData > previousData+rejectionThreshold || newData < previousData-rejectionThreshold)){
+      tone(A5, 1000, 100);                      // scream if there's crazy data
       DATA[samplesToAverage-1] = previousData;  // reject newData if something doesn't seem correct
       /*Serial.print("   *FILTER.newData:_ERROR!_Description:_previousData=");
       Serial.print(previousData);
@@ -87,7 +88,8 @@ float FILTER2::RUNNING_AVERAGE(float newData, int samplesPerSec, float averaging
   }
   else{ //do this the remaining times...
     for(int i = 1; i < samplesToAverage; i++){DATA[i-1] = DATA[i];} // Shift the DATA to make room for one more          
-    if(newData > previousData+30 || newData < previousData-30){
+    if(rejectBadData && (newData > previousData+rejectionThreshold || newData < previousData-rejectionThreshold)){
+      tone(A5, 2000, 100);
       DATA[samplesToAverage-1] = previousData;  // reject newData if something doesn't seem correct
       /*Serial.print("   *FILTER.newData:_ERROR!_Description:_previousData=");
       Serial.print(previousData);
@@ -141,7 +143,8 @@ float FILTER3::RUNNING_AVERAGE(float newData, int samplesPerSec, float averaging
 	}
 	else { //do this the remaining times...
 		for (int i = 1; i < samplesToAverage; i++) { DATA[i - 1] = DATA[i]; } // Shift the DATA to make room for one more          
-		if (newData > previousData + 30 || newData < previousData - 30) {
+		if (rejectBadData && (newData > previousData+rejectionThreshold || newData < previousData-rejectionThreshold)) {
+      tone(A5, 3000, 100);                        // scream if there's crazy new data
 			DATA[samplesToAverage - 1] = previousData;  // reject newData if something doesn't seem correct
 														/*Serial.print("   *FILTER.newData:_ERROR!_Description:_previousData=");
 														Serial.print(previousData);
@@ -195,7 +198,8 @@ float FILTER4::RUNNING_AVERAGE(float newData, int samplesPerSec, float averaging
   }
   else { //do this the remaining times...
     for (int i = 1; i < samplesToAverage; i++) { DATA[i - 1] = DATA[i]; } // Shift the DATA to make room for one more          
-    if (newData > previousData + 30 || newData < previousData - 30) {
+    if (rejectBadData && (newData > previousData+rejectionThreshold || newData < previousData-rejectionThreshold)) {
+      tone(A5, 4000, 100);                        // scream if there's crazy new data
       DATA[samplesToAverage - 1] = previousData;  // reject newData if something doesn't seem correct
                             /*Serial.print("   *FILTER.newData:_ERROR!_Description:_previousData=");
                             Serial.print(previousData);
