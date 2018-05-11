@@ -62,7 +62,7 @@ This is an open source project, with all public files available at <a href="http
 - v^SPEED mini is compatible with both Android and iPhone.
 - You may change the bluetooth mode at startup:
   - Hold the volume down button while powering on the vario to boot up into Android mode.
-    - After two minutes of no connection, the bluetooth transmission will be disabled to save battery and sample rate.
+    - After two minutes of no connection, the bluetooth transmission will be disabled to preserve battery and sample rate.
   - Hold the volume up button while powering on the vario to boot up into iPhone mode.
   - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
     - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
