@@ -30,7 +30,7 @@
     - After two minutes of no connection, the bluetooth transmission will be disabled to save battery and sample rate.
   - Hold the volume up button while powering on the vario to boot up into iPhone mode.
   - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
-    - you may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
+    - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
 
 #### Android Users--
 - Download the v^SPEED Vario app from Google Play Store.
