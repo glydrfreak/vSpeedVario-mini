@@ -27,6 +27,8 @@ class Default{
     bool ENABLE_BLUETOOTH            = 1;    // [1]YES, [0]NO
     int START_UP_BLUETOOTH_MODE      = 0;    // [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
 
+    int ALTITUDE_UNITS               = 1;    // [1]FEET, [2]METERS
+    int VELOCITY_UNITS               = 1;    // [1]FEET_PER_SECOND, [2]METERS_PER_SECOND, [3]FEET_PER_MINUTE
 };
     
 #endif
