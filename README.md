@@ -37,12 +37,33 @@ This is an open source project, with all public files available at <a href="http
   - The usb cable must not be a "charge only" cable
 - Tools -> Port -> Select any port for now
 - Sketch -> Upload
+- Anytime you power on your vario, or upload a new sketch, you will hear two sequences of beeps:
+  - The first beep(s) indicates the bluetooth mode.
+    - No beep: Bluetooth disabled
+    - One beep: Android mode
+    - Two beeps: iPhone mode
+  - The second series of beeps indicates the battery level.
+    - Ascending: Battery is at least 75%
+    - Steady: Battery is at least 50%
+    - Descending: Battery is below 25%
 
 
 ### CUSTOM SETTINGS
 - Open the `vSpeed_mini.ino` file
 - Open the `DEFAULT_SETTINGS.h` tab
-- Change any of the values according to your preference
+- Change any of the following values according to your preference:
+  - `ENABLE_BEEP`= <b>1</b>; [1]YES, [0]NO
+  - `START_UP_VOLUME`= <b>10</b>; (0 TO 31)
+  - `BEEP_TYPE`= <b>1</b>; Default [1]BASED_ON_VELOCITY, [2]BUFFERED_INCREMENTS (Experimental)
+  - `CLIMB_BEEP_TRIGGER`= <b>1.0</b>; (Default: One beep for every 1.0 foot of altitude increase)
+  - `SINK_BEEP_TRIGGER`= <b>-1.0</b>; (Default: Constant beep if sinking more than -1.0 ft/s)
+  - `CLIMB_PITCH_MAX`= <b>600.0</b>; (Default: 600.0 Hz when climbing at ten ft/s)
+  - `CLIMB_PITCH_MIN`= <b>400.0</b>; (Default: 400.0 Hz when climbing at one ft/s)
+  - `SINK_PITCH_MAX`= <b>250.0</b>; (Default: 250.0 Hz when sinking at `SINK_BEEP_TRIGGER` ft/s)
+  - `SINK_PITCH_MIN`= <b>150.0</b>; (Default: 150.0 Hz when sinking at negative ten ft/s)
+  - `MEASURE_BATTERY`= <b>1</b>; [1]YES, [0]NO
+  - `ENABLE_BLUETOOTH`= <b>1</b>; [1]YES, [0]NO
+  - `START_UP_BLUETOOTH_MODE`= <b>0</b>; Default [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
 - Tools -> Board -> Select: Adafruit Feather M0
 - Connect your v^SPEED mini to your computer
 - Tools -> Port -> Select the correct port
@@ -53,7 +74,7 @@ This is an open source project, with all public files available at <a href="http
 - v^SPEED mini is compatible with both Android and iPhone.
 - You may change the bluetooth mode at startup:
   - Hold the volume down button while powering on the vario to boot up into Android mode.
-    - After two minutes of no connection, the bluetooth transmission will be disabled to save battery and sample rate.
+    - After two minutes of no connection, the bluetooth transmission will be disabled to preserve battery and sample rate.
   - Hold the volume up button while powering on the vario to boot up into iPhone mode.
   - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
     - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
