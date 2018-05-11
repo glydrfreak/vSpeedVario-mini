@@ -25,7 +25,7 @@
 #define BAUD_RATE                 115200    // Serial Monitor baud rate
 #define D1_OSR                         5    // (Default pressure OSR mode 5) 
 #define D2_OSR                         2    // (Default temperature OSR mode 2) 
-#define VERBOSE_MODE               true    // If set to 'true' enables debug output
+#define VERBOSE_MODE               false    // If set to 'true' enables debug output
 #define PRESSURE_FILTER_DURATION       0    // (AVERAGING DURATION: 1ms to 2000ms)
 #define ALTITUDE_FILTER_DURATION    1000    // (AVERAGING DURATION: 1ms to 2000ms)
 #define VSPEED_FILTER_DURATION       750    // (AVERAGING DURATION: 1ms to 2000ms)
@@ -46,8 +46,8 @@ vAdafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI
 
 void SWITCH_BLE_MODE(int bluetoothMode);    // BLE MODULE INITIALIZES ACCORDING TO SPECIFIED BLUETOOTH_MODE;
 void receiveCommands();
-void transmitVspeed();
-void transmitFlySkyHy();
+void transmitVspeed(float _altitudeFt, float _velocityFtPerSec, bool _measureBattery, float _batteryLvl);
+void transmitFlySkyHy(float _pressurePa, float _velocityFtPerSec, int _batteryPercent);
 void adjustVolumeTo(int volLevel);  // 0 - 100;
 void volumeUp();
 void volumeDown();
@@ -59,6 +59,8 @@ float temperatureF = 0;
 float pressurePa = 0;
 float altitudeFt = 0;
 float velocityFtPerSec = 0;
+float altitude = 0;
+float velocity = 0;
 unsigned long previousMillis = 0;
 int samplesThisSec = 0;    // Used for calculating averaging duration
 int samplesPerSec = 0;     // Used for displaying samplesPerSec updated every once second
@@ -233,6 +235,10 @@ void loop() {
         else{
           altitudeFt = MS5611.getAltitudeFt(temperatureF, pressurePa);
         }
+        switch(SETTING.ALTITUDE_UNITS){
+          default: altitude=altitudeFt*1; break;
+          case 2: altitude=altitudeFt*0.3048; break;
+        }
 
         //VERTICAL SPEED:
         if(millis()>6000){
@@ -246,15 +252,20 @@ void loop() {
           else{
             velocityFtPerSec = MS5611.getVelocityFtPerSec(altitudeFt, millis());
           }
+          switch(SETTING.VELOCITY_UNITS){
+            default: velocity=velocityFtPerSec*1; break;
+            case 2: velocity=velocityFtPerSec*0.3048; break;
+            case 3: velocity=velocityFtPerSec*60; break;
+          }
         }
-        else{velocityFtPerSec=0;}
+        else{velocity=0;}
 
         //DEBUG:
         //Serial.println(temperatureF); 
         //Serial.println(pressurePa);
-        Serial.println(altitudeFt); 
-        //Serial.print(" "); 
-        //Serial.println(velocityFtPerSec);     
+        Serial.print(altitude); 
+        Serial.print(" "); 
+        Serial.println(velocity);     
 
 
 
@@ -285,12 +296,12 @@ void loop() {
             }
             bleMillis = millis();
             receiveCommands();    //Custom Bluetooth Commands Handled When Received From Mobile Devices
-            transmitVspeed();       //Custom Bluetooth Transmissions to Mobile Devices
+            transmitVspeed(altitudeFt, velocityFtPerSec, SETTING.MEASURE_BATTERY, batteryLvl);       //Custom Bluetooth Transmissions to Mobile Devices
           }
           
           else if(BLUETOOTH_MODE==2){ 
             //TODO -- Receive volume commands from Flyskyhy;
-            transmitFlySkyHy(); 
+            transmitFlySkyHy(pressurePa, velocityFtPerSec, batteryPercent); 
           }
   
         }
@@ -580,13 +591,13 @@ void receiveCommands(){
 //         Custom Bluetooth Transmissions to v^Speed Vario Android App:         //
 //                                                                              //
 //v^SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED
-void transmitVspeed(){
+void transmitVspeed(float _altitudeFt, float _velocityFtPerSec, bool _measureBattery, float _batteryLvl){
   ble.print("AT+BLEUARTTX=");
-  ble.print(altitudeFt);
+  ble.print(_altitudeFt);
   ble.print("_");     
-  ble.print(velocityFtPerSec);  
+  ble.print(_velocityFtPerSec);  
   ble.print("_");
-  if(SETTING.MEASURE_BATTERY){ble.print(batteryLvl);}
+  if(_measureBattery){ble.print(_batteryLvl);}
   else{ble.print("0");}
   ble.println("V");  //Critical char used for transmission completion indication
 }
@@ -598,7 +609,7 @@ void transmitVspeed(){
 //               Custom Bluetooth Transmissions to FlySkyHy iOS App:            //
 //                                                                              //
 //v^SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED
-void transmitFlySkyHy(){
+void transmitFlySkyHy(float _pressurePa, float _velocityFtPerSec, int _batteryPercent){
 
   //EXAMPLE TRANSMISSION SENTENCE:
   //$LK8EX1,98684,99999,-4,28,1100,*02<CR><LF>
@@ -613,14 +624,14 @@ void transmitFlySkyHy(){
   //   *02 is nmea checksum
   //   <CR><LF> CR and LF characters to terminate the line
   
-  int cmPerSec = velocityFtPerSec*30.48;
+  int cmPerSec = _velocityFtPerSec*30.48;
   
   ble.print("AT+GATTCHAR=1,$LK8EX1,");
-  ble.println(pressurePa,0);
+  ble.println(_pressurePa,0);
   ble.print("AT+GATTCHAR=1,,99999,");
   ble.println(cmPerSec);
   ble.print("AT+GATTCHAR=1,,28,10");
-  ble.println(batteryPercent);
+  ble.println(_batteryPercent);
   ble.print("AT+GATTCHAR=1,");
   ble.println(",*02<CR><LF>");
   
