@@ -39,13 +39,14 @@ This is an open source project, with all public files available at <a href="http
         <li>Ultra-high precision barometric pressure sensor detects altitude changes as small as 10cm</li>
         <li>Lowest priced Bluetooth Variometer on the market</li>
         <li>iPhone users: Fully compatible with <a href="#flyskyhy">FlySkyHy</a> app</li>
-        <li>Android users: <a href="#vspeed">v^SPEED</a> app new in Google Play Store</li>
+        <li>Android users: <a href="#vspeed-vario">v^SPEED</a> app new in Google Play Store</li>
         <li>Fully compatiple with Arduino IDE to easily change custom settings</li>
+          (Micro USB cable included)
         <li>Mounts on risers with velcro</li>
-        (leash, and velcro for both riser and vario included)
+          (Leash, and velcro for both riser and vario included)
         <li>Tiny Size: 68x25x10mm (about the size of a man's thumb)</li>
         <li>3D printed cover screws onto circuit board </li>
-          (black, white, yellow, or light blue)
+          (Comes in black, or upon special request, White, yellow, or light blue)
         <li>Power switch, and volume buttons</li>
         <li>100mAh lipo battery with microUSB charging port</li>
         <li>7hr battery life while streaming bluetooth data</li>
