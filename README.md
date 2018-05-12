@@ -62,7 +62,7 @@ This is an open source project, with all public files available at <a href="http
 #### Congrats on receiving your new v^SPEED Vario mini!
 - Install <a href src="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>
 - Download and extract the <a href src="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip">files</a> in this repository
-- Open the `vSpeed_mini.ino` file
+- Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
 - Tools -> Boards Manager -> Search for: Arduino SAMD Boards -> Install
 - Tools -> Boards Manager -> Search for: Adafruit SAMD Boards -> Install
 - Tools -> Board -> Select: Adafruit Feather M0
@@ -84,7 +84,7 @@ This is an open source project, with all public files available at <a href="http
 
 
 ### CUSTOM SETTINGS
-- Open the `vSpeed_mini.ino` file
+- Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
 - Open the `DEFAULT_SETTINGS.h` tab
 - Change any of the following values according to your preference:
   - `ENABLE_BEEP`= <b>1</b>; [1]YES, [0]NO
