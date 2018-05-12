@@ -60,8 +60,8 @@ This is an open source project, with all public files available at <a href="http
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
-- Install <a href src="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>
-- Download and extract the <a href src="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip">files</a> in this repository
+- Install <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>
+- Download and extract the <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>files</a> in this repository
 - Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
 - Tools -> Boards Manager -> Search for: Arduino SAMD Boards -> Install
 - Tools -> Boards Manager -> Search for: Adafruit SAMD Boards -> Install
@@ -119,7 +119,7 @@ This is an open source project, with all public files available at <a href="http
     - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
 
 #### Android Users--
-- Download the <a href src="https://play.google.com/store/apps/details?id=com.braedin.butler.vspeed.vario&hl=en_US">v^SPEED Vario app</a> from Google Play Store.
+- Download the <a href="https://play.google.com/store/apps/details?id=com.braedin.butler.vspeed.vario&hl=en_US">v^SPEED Vario app</a> from Google Play Store.
 <table>
   <tr>
     <td width=33% vAlign="top" align="center">
@@ -138,7 +138,7 @@ This is an open source project, with all public files available at <a href="http
 </table>
 
 #### iPhone Users--
-- Download <a href src="https://itunes.apple.com/us/app/flyskyhy/id516879039?mt=8">Flyskyhy</a> from the App Store.
+- Download <a href="https://itunes.apple.com/us/app/flyskyhy/id516879039?mt=8">Flyskyhy</a> from the App Store.
 - While selecting the external vario model, choose `Skydrop` for the time being.
 <table>
   <tr>
