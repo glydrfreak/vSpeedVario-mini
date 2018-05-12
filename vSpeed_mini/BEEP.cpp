@@ -21,6 +21,7 @@ void BEEP::basedOnVelocity(float currentAltitude, float velo, unsigned long curr
   //BEEP PITCH DEPENDS ON VELOCITY
   beepPitch = (((pitchMax - pitchMin) / (mostClimb - leastClimb)) * (velo - leastClimb)) + pitchMin;
   leastSink = sinkAlarm;
+  mostSink = leastSink-10;
   sinkPitch = (((sinkPitchMin - sinkPitchMax) / (mostSink - leastSink)) * (velo - leastSink)) + sinkPitchMax;
   
   //ALLOW A BEEP IF CLIMBED MORE THAN A CERTAIN AMOUNT
