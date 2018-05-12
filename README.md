@@ -119,7 +119,7 @@ This is an open source project, with all public files available at <a href="http
     - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
 
 #### Android Users--
-- Download the v^SPEED Vario app from Google Play Store.
+- Download the <a href src="https://play.google.com/store/apps/details?id=com.braedin.butler.vspeed.vario&hl=en_US">v^SPEED Vario app</a> from Google Play Store.
 <table>
   <tr>
     <td width=33% vAlign="top" align="center">
@@ -138,7 +138,7 @@ This is an open source project, with all public files available at <a href="http
 </table>
 
 #### iPhone Users--
-- Download Flyskyhy from the App Store.
+- Download <a href src="https://itunes.apple.com/us/app/flyskyhy/id516879039?mt=8">Flyskyhy</a> from the App Store.
 - While selecting the external vario model, choose `Skydrop` for the time being.
 <table>
   <tr>
