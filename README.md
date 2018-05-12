@@ -25,6 +25,37 @@
 ### ABOUT
 This is an open source project, with all public files available at <a href="https://github.com/glydrfreak/vSpeed-Vario">the vSpeed-Vario repository</a>. The v^SPEED mini is based on PROTOTYPE6, which is found within that same repository. This variometer was designed to be compatible with the Arduino IDE for advanced usage, which allows users to modify the existing source to their pleasure. Here, in the repository you are currently viewing, you will find the most up-to-date source code for use in the Arduino IDE. The hardware is based on another open source product: <a href="https://learn.adafruit.com/adafruit-feather-m0-bluefruit-le/downloads">Adafruit's Bluefruit Feather M0</a>. The v^SPEED mini is basically just a Bluefruit Feather M0 development board, but without the header pins broken out, and with the added variometer circuitry.
 
+<table>
+  <tr>
+    <td width=33% vAlign="top" align="center">
+      <h2>v^SPEED VARIO mini</h2>
+      <h3>$99</h3>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250>
+      <h2><a href="https://www.ebay.com/usr/glydrfreak">BUY NOW</a></h2></br>
+    </td>
+    <td width=66%> 
+      <ul>
+        <h3>SPECS:</h3>
+        <li>Ultra-high precision barometric pressure sensor detects altitude changes as small as 10cm</li>
+        <li>Lowest priced Bluetooth Variometer on the market</li>
+        <li>iPhone users: Fully compatible with <a href="#flyskyhy">FlySkyHy</a> app</li>
+        <li>Android users: <a href="#vspeed">v^SPEED</a> app new in Google Play Store</li>
+        <li>Fully compatiple with Arduino IDE to easily change custom settings</li>
+        <li>Mounts on risers with velcro</li>
+        (leash, and velcro for both riser and vario included)
+        <li>Tiny Size: 68x25x10mm (about the size of a man's thumb)</li>
+        <li>3D printed cover screws onto circuit board </li>
+          (black, white, yellow, or light blue)
+        <li>Power switch, and volume buttons</li>
+        <li>100mAh lipo battery with microUSB charging port</li>
+        <li>7hr battery life while streaming bluetooth data</li>
+        <li>1hr charging time</li>
+        <li>Sale price: $99 each (subject to change)</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
@@ -82,11 +113,43 @@ This is an open source project, with all public files available at <a href="http
   - Hold the volume up button while powering on the vario until the it beeps to boot up into iPhone mode.
   - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
     - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
+
 #### Android Users--
 - Download the v^SPEED Vario app from Google Play Store.
+<table>
+  <tr>
+    <td width=33% vAlign="top" align="center">
+      <h2>v^SPEED Vario</h2>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/ANDROID.png" width=250>
+    </td>
+    <td width="66%"> 
+      <ul>
+        <h3>Android App--</h3>
+        This is a modified version of Adafruit's open source "Bluefruit LE Connect" for Android. The source code can be found in the Android folder of <a href="https://github.com/glydrfreak/vSpeed-Vario">the vSpeed-Vario repository</a>. Now published to Google Play! </br>
+  </br>
+        This app will give you a better image of what your v^SPEED Vario is doing as it transmits live bluetooth data of barometric altitude, vertical speed, and battery level. Other features include implemented GPS for GPS altitude, ground speed, and heading. The implemented Audio beeps are helpful for listening to each foot of climb as well as a variable sink tone. An implemented accelerometer is for keeping track of max G-force during a hard turn or spiral. The visual display includes a line chart of vertical speed, as well as scrolling altitude numbers so you can see your precise vertical velocity. The climb and sink thresholds are adjustable within the app, which also change the thresholds on the external vario automatically.
+      </ul>
+    </td>
+  </tr>
+</table>
+
 #### iPhone Users--
 - Download Flyskyhy from the App Store.
 - While selecting the external vario model, choose `Skydrop` for the time being.
+<table>
+  <tr>
+    <td width=33% vAlign="top" align="center">
+      <h2>Flyskyhy</h2>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/fsh2.jpg" width=250>
+    </td>
+    <td width=66%> 
+      <ul>
+        <h3>iOS App by Renevision--</h3>
+        v^SPEED Vario is now compatible with the World's most popular Paragliding app! Flyskyhy is an unbeatable iPhone application when it comes to flying. v^Speed Vario is currently using the same protocol as SkyDrop variometers, so in the app when selecting your device, you must choose SkyDrop for the time being.  
+      </ul>
+    </td>
+  </tr>
+</table>
 
 
 ### FIRMWARE UPDATES
@@ -95,3 +158,7 @@ This is an open source project, with all public files available at <a href="http
 - You may want to keep your existing `DEFAULT_SETTINGS.h` file if you have made changes to it.
 - To see the most recent date that your existing code was updated, see the first line of code in `vSpeed_mini.ino`.
 - a `changeLog.txt` is provided in the `vSpeed_mini` folder.
+
+
+### QUESTIONS / CONCERNS / ASSISTANCE
+Email vSpeedVario@gmail.com </br>
