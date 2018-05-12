@@ -60,7 +60,7 @@ This is an open source project, with all public files available at <a href="http
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
-- Install Arduino IDE
+- Install <a href src="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>
 - Tools -> Boards Manager -> Search for: Arduino SAMD Boards -> Install
 - Tools -> Boards Manager -> Search for: Adafruit SAMD Boards -> Install
 - Tools -> Board -> Select: Adafruit Feather M0
@@ -78,6 +78,7 @@ This is an open source project, with all public files available at <a href="http
     - Ascending: Battery is at least 75%
     - Steady: Battery is at least 50%
     - Descending: Battery is below 25%
+- <b>You're ready to fly!</b>
 
 
 ### CUSTOM SETTINGS
