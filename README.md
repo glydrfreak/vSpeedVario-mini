@@ -1,6 +1,6 @@
 <table float="center">
   <tr>
-    <td align="center" width=50%>
+    <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
       <h3><a href="https://www.ebay.com/usr/glydrfreak">Shop</a></h3>
       <h2>Contents:</h2>
@@ -11,9 +11,9 @@
       <a href="#firmware-updates">Firmware Updates</a> </br>
     </td>
     <td>
-      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vSpeedMini3D.JPG" width=350>
     </td>
-    <td align="center"> 
+    <td align="center" width=33%> 
       <h3>DIY Paragliding Variometer</h3>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/logo.jpg" width=116> 
       <h6>(Vertical Speed Indicator)</h6>
