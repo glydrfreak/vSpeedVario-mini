@@ -144,7 +144,8 @@ void setup() {
     delay(1000);
   }
 
-  if(batteryPercent>75){
+  if(batteryPercent>=66){
+    Serial.print("BATT:>=66");
     tone(BEEP_CTRL, 300, 100);
     delay(200);
     tone(BEEP_CTRL, 400, 100);
@@ -152,7 +153,8 @@ void setup() {
     tone(BEEP_CTRL, 500, 100);
     delay(200);
   }
-  else if(batteryPercent>50){
+  else if(batteryPercent>=33){
+    Serial.print("BATT:>=33");
     tone(BEEP_CTRL, 400, 100);
     delay(200);
     tone(BEEP_CTRL, 400, 100);
@@ -160,7 +162,8 @@ void setup() {
     tone(BEEP_CTRL, 400, 100);
     delay(200);
   }
-  else if(batteryPercent<25){
+  else if(batteryPercent<33){
+    Serial.print("BATT:<33");
     tone(BEEP_CTRL, 500, 100);
     delay(200);
     tone(BEEP_CTRL, 400, 100);
@@ -168,7 +171,8 @@ void setup() {
     tone(BEEP_CTRL, 300, 100);
     delay(200);
   }
-  
+  Serial.print("==");
+  Serial.println(batteryPercent);  
 }
 
 void loop() {

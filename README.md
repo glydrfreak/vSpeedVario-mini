@@ -77,9 +77,9 @@ This is an open source project, with all public files available at <a href="http
     - One beep: Android mode
     - Two beeps: iPhone mode
   - The second series of beeps indicates the battery level.
-    - Ascending: Battery is at least 75%
-    - Steady: Battery is at least 50%
-    - Descending: Battery is below 25%
+    - Ascending: Battery is at least 66%
+    - Steady: Battery is at least 33%
+    - Descending: Battery is below 33%
 - <b>You're ready to fly!</b>
 
 
@@ -116,7 +116,7 @@ This is an open source project, with all public files available at <a href="http
     - After two minutes of no connection, the bluetooth transmission will be disabled to preserve battery and sample rate.
   - Hold the volume up button while powering on the vario until it beeps to boot up into iPhone mode.
   - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
-    - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h`.
+    - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h` so you don't need to hold down a volume button each time you switch on the vario.
 
 #### Android Users--
 - Download the <a href="https://play.google.com/store/apps/details?id=com.braedin.butler.vspeed.vario&hl=en_US">v^SPEED Vario app</a> from Google Play Store.
@@ -157,7 +157,7 @@ This is an open source project, with all public files available at <a href="http
 
 
 ### FIRMWARE UPDATES
-#### Source code last updated: `5/11/2018`
+#### Source code last updated: `5/29/2018`
 - For the most up-to-date source code for your v^SPEED mini, download and extract the <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>files</a> in this repository and replace the existing files in your `vSpeed_mini` folder. 
 - You may want to keep your existing `DEFAULT_SETTINGS.h` file if you have made changes to it.
 - To see the most recent date that your existing code was updated, see the first line of code in `vSpeed_mini.ino`.
