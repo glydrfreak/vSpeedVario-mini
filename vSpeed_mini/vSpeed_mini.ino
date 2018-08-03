@@ -1,5 +1,5 @@
-/**
- * SOURCE CODE UPDATED: 5/29/2018
+/*
+ * SOURCE CODE UPDATED: 8/2/2018
  */
 
 #include "MS5611.h"
@@ -64,7 +64,6 @@ float velocity = 0;
 unsigned long previousMillis = 0;
 int samplesThisSec = 0;    // Used for calculating averaging duration
 int samplesPerSec = 0;     // Used for displaying samplesPerSec updated every once second
-int BLUETOOTH_MODE = 0;    // iOS_Flyskyhy[2];  Android_v^SPEED[1]; NONE[0];
 long battMillis = -5000;
 float batteryLvl = 0;
 int batteryPercent = 100;
@@ -78,7 +77,11 @@ int bleInterval = 1000/(float)blePerSec;
 
 
 void setup() {
+  delay(1000);
   
+  Serial.begin(BAUD_RATE);
+  
+  Serial.println("********SETUP********");
   pinMode(VBATPIN, INPUT);
   
   pinMode(POT_CS,OUTPUT);
@@ -90,17 +93,14 @@ void setup() {
 
   pinMode(VOL_UP, INPUT);
   pinMode(VOL_DOWN, INPUT);
-  
-  Serial.begin(BAUD_RATE);
 
   //X9C.begin(POT_CS, POT_INC, POT_UD);
-  
-  
+
   if(!MS5611.begin(MS5611_CSB)){
-    Serial.println("MS5611 failed.");
+    Serial.println("MS5611    failed.");
   }
   else{
-    Serial.println("MS5611 success.");
+    Serial.println("MS5611    initialized");
   }
   
   BEEP.begin(BEEP_CTRL);
@@ -110,40 +110,36 @@ void setup() {
   BEEP.setClimbPitchMin(SETTING.CLIMB_PITCH_MIN);           //Hz
   BEEP.setSinkPitchMax(SETTING.SINK_PITCH_MAX);             //Hz
   BEEP.setSinkPitchMin(SETTING.SINK_PITCH_MIN);             //Hz
+  Serial.println("BEEP      initialized");
 
-  if(SETTING.ENABLE_BLUETOOTH){
-    if(analogRead(VOL_DOWN)<500){BLUETOOTH_MODE = 1;} // Android_v^SPEED mode;
-    else if(analogRead(VOL_UP)<500){BLUETOOTH_MODE = 2;} // iOS_Flyskyky mode;
-    else{
-      BLUETOOTH_MODE = SETTING.START_UP_BLUETOOTH_MODE; 
-      if(BLUETOOTH_MODE == 0){
-        SETTING.ENABLE_BLUETOOTH = false;  // START_UP_BLUETOOTH_MODE DEFINED IN "DEFAULT_SETTINGS.h";
-      }
-    }   
-    
-    ble.begin(VERBOSE_MODE);
-    SWITCH_BLE_MODE(BLUETOOTH_MODE);  //INITIALIZES THE SPECIFIED BLUETOOTH MODE; 
+  adjustVolumeTo(SETTING.START_UP_VOLUME);
+  estimatedVolume = SETTING.START_UP_VOLUME;
+
+  if(analogRead(VOL_DOWN)<500){SETTING.BLUETOOTH_MODE = 1;} // Override to Android_v^SPEED mode;
+  else if(analogRead(VOL_UP)<500){SETTING.BLUETOOTH_MODE = 2;} // Override to iOS_Flyskyky mode;
+  if(SETTING.BLUETOOTH_MODE==1 || SETTING.BLUETOOTH_MODE==2){ 
+    if(!ble.begin(VERBOSE_MODE)){Serial.println("BLUETOOTH failed");}
+    SWITCH_BLE_MODE(SETTING.BLUETOOTH_MODE);  //INITIALIZES THE SPECIFIED BLUETOOTH MODE; 
+    Serial.print("BLUETOOTH initialized ");
+    if(SETTING.BLUETOOTH_MODE==1){
+      Serial.println("(Android mode)");
+      tone(BEEP_CTRL, 500, 100);
+      delay(1000);
+    }
+    if(SETTING.BLUETOOTH_MODE==2){
+      Serial.println("(iPhone mode)");
+      tone(BEEP_CTRL, 500, 100);
+      delay(200);
+      tone(BEEP_CTRL, 500, 100);
+      delay(1000);
+    }
   }
+  else{Serial.println("BLUETOOTH disabled");}
   
   batteryLvl = getBatteryLvl();
   batteryPercent = (int)(batteryLvl*156.25 - 556.25);  //conversion to percent;
   if(batteryPercent > 99){batteryPercent = 99;}
   else if(batteryPercent < 0){batteryPercent = 0;}
-
-  adjustVolumeTo(SETTING.START_UP_VOLUME);
-  estimatedVolume = SETTING.START_UP_VOLUME;
-
-  if(BLUETOOTH_MODE==1){
-    tone(BEEP_CTRL, 500, 100);
-    delay(1000);
-  }
-  else if(BLUETOOTH_MODE==2){
-    tone(BEEP_CTRL, 500, 100);
-    delay(200);
-    tone(BEEP_CTRL, 500, 100);
-    delay(1000);
-  }
-
   if(batteryPercent>=66){
     Serial.print("BATT:>=66");
     tone(BEEP_CTRL, 300, 100);
@@ -173,6 +169,7 @@ void setup() {
   }
   Serial.print("==");
   Serial.println(batteryPercent);  
+  Serial.println("******END SETUP******");
 }
 
 void loop() {
@@ -245,7 +242,7 @@ void loop() {
         }
 
         //VERTICAL SPEED:
-        if(millis()>6000){
+        if(millis()>7000){
           if(VSPEED_FILTER_DURATION){
             velocityFtPerSec = FILTER3.RUNNING_AVERAGE(
               MS5611.getVelocityFtPerSec(altitudeFt, millis()), 
@@ -275,7 +272,7 @@ void loop() {
 
       //====BEEP=================================================================/
       
-        if(SETTING.ENABLE_BEEP && millis()>6000){
+        if(SETTING.ENABLE_BEEP && millis()>7000){
           switch(SETTING.BEEP_TYPE){
             default: BEEP.basedOnVelocity(altitudeFt, velocityFtPerSec, millis());
             break;
@@ -287,23 +284,23 @@ void loop() {
 
 
       //====BLE====================================================================/ 
-        if(SETTING.ENABLE_BLUETOOTH){
+        if(SETTING.BLUETOOTH_MODE==1 || SETTING.BLUETOOTH_MODE==2){
           
-          if(BLUETOOTH_MODE==1 && millis()-bleMillis>bleInterval){
-            if(millis()>120000 && bleFlag){
-              if(!ble.isConnected()){
-                SETTING.ENABLE_BLUETOOTH = false;
-                bleFlag = false;
-                Serial.println("Disabling BLE because no connection.");
-              }
-              else{bleFlag = false;}
-            }
+          if(SETTING.BLUETOOTH_MODE==1 && millis()-bleMillis>bleInterval){
+            //if(millis()>120000 && bleFlag){
+            //  if(!ble.isConnected()){
+            //    SETTING.BLUETOOTH_MODE = 0;
+            //    bleFlag = false;
+            //    Serial.println("Disabling BLE because no connection after 2 minutes.");
+            //  }
+            //  else{bleFlag = false;}
+            //}
             bleMillis = millis();
             receiveCommands();    //Custom Bluetooth Commands Handled When Received From Mobile Devices
             transmitVspeed(altitudeFt, velocityFtPerSec, SETTING.MEASURE_BATTERY, batteryLvl);       //Custom Bluetooth Transmissions to Mobile Devices
           }
           
-          else if(BLUETOOTH_MODE==2){ 
+          else if(SETTING.BLUETOOTH_MODE==2){ 
             //TODO -- Receive volume commands from Flyskyhy;
             transmitFlySkyHy(pressurePa, velocityFtPerSec, batteryPercent); 
           }
@@ -426,7 +423,7 @@ void receiveCommands(){
     /*if(command == "m"){ENABLE_MS5611 = false;}
     else if(command == "M"){ENABLE_MS5611 = true;}*/
 
-    if(command == "k"){SETTING.ENABLE_BLUETOOTH = 0;}  // Kill BLE connection
+    if(command == "k"){SETTING.BLUETOOTH_MODE = 0;}  // Kill BLE connection
     
     if(command == "V"){SETTING.MEASURE_BATTERY=1;}        // display supply power supply voltage
     else if(command == "v"){SETTING.MEASURE_BATTERY=0;}  // display "0.00V" and don't calculate anything to improve samplesPerSec
