@@ -48,9 +48,9 @@ This is an open source project, with all public files available at <a href="http
         <li>3D printed cover screws onto circuit board </li>
           (Comes in black, or upon special request, White, yellow, or light blue)
         <li>Power switch, and volume buttons</li>
-        <li>100mAh lipo battery with microUSB charging port</li>
-        <li>7hr battery life while streaming bluetooth data</li>
-        <li>1hr charging time</li>
+        <li>150mAh lipo battery with microUSB charging port</li>
+        <li>10hr battery life while streaming bluetooth data</li>
+        <li>1.5hr charging time</li>
         <li>Sale price: $99 each (subject to change)</li>
       </ul>
     </td>
