@@ -97,8 +97,7 @@ This is an open source project, with all public files available at <a href="http
   - `SINK_PITCH_MAX`= <b>250.0</b>; (Default: 250.0 Hz when sinking at `SINK_BEEP_TRIGGER` ft/s)
   - `SINK_PITCH_MIN`= <b>150.0</b>; (Default: 150.0 Hz when sinking at ten ft/s less than `SINK_BEEP_TRIGGER` ft/s)
   - `MEASURE_BATTERY`= <b>1</b>; [1]YES, [0]NO
-  - `ENABLE_BLUETOOTH`= <b>1</b>; [1]YES, [0]NO
-  - `START_UP_BLUETOOTH_MODE`= <b>0</b>; Default [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
+  - `BLUETOOTH_MODE`= <b>0</b>; Default [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
   - `ALTITUDE_UNITS`= <b>1</b>; Default [1]FEET, [2]METERS
   - `VELOCITY_UNITS`= <b>1</b>; Default [1]FEET_PER_SECOND, [2]METERS_PER_SECOND, [3] FEET_PER_MINUTE
 - Tools -> Board -> Select: Adafruit Feather M0
@@ -157,7 +156,7 @@ This is an open source project, with all public files available at <a href="http
 
 
 ### FIRMWARE UPDATES
-#### Source code last updated: `5/29/2018`
+#### Source code last updated: `8/2/2018`
 - For the most up-to-date source code for your v^SPEED mini, download and extract the <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>files</a> in this repository and replace the existing files in your `vSpeed_mini` folder. 
 - You may want to keep your existing `DEFAULT_SETTINGS.h` file if you have made changes to it.
 - To see the most recent date that your existing code was updated, see the first line of code in `vSpeed_mini.ino`.
