@@ -1,5 +1,5 @@
 /*
- * SOURCE CODE UPDATED: 8/2/2018
+ * SOURCE CODE UPDATED: 8/8/2018
  */
 
 #include "MS5611.h"
@@ -300,7 +300,8 @@ void loop() {
             transmitVspeed(altitudeFt, velocityFtPerSec, SETTING.MEASURE_BATTERY, batteryLvl);       //Custom Bluetooth Transmissions to Mobile Devices
           }
           
-          else if(SETTING.BLUETOOTH_MODE==2){ 
+          else if(SETTING.BLUETOOTH_MODE==2 && millis()-bleMillis>bleInterval){ 
+            bleMillis = millis();
             //TODO -- Receive volume commands from Flyskyhy;
             transmitFlySkyHy(pressurePa, velocityFtPerSec, batteryPercent); 
           }
@@ -635,6 +636,21 @@ void transmitFlySkyHy(float _pressurePa, float _velocityFtPerSec, int _batteryPe
   ble.println(_batteryPercent);
   ble.print("AT+GATTCHAR=1,");
   ble.println(",*02<CR><LF>");
+
+//  Serial.println("*************************************START");
+//  Serial.print("AT+GATTCHAR=1,$LK8EX1,");
+//  Serial.println(_pressurePa,0);
+//  Serial.print("AT+GATTCHAR=1,,99999,");
+//  Serial.println(cmPerSec);
+//  Serial.print("AT+GATTCHAR=1,,28,10");
+//  Serial.println(_batteryPercent);
+//  Serial.print("AT+GATTCHAR=1,");
+//  Serial.println(",*02<CR><LF>");
+//  Serial.println("*************************************END");
+
+//  Serial.print(_pressurePa-86130,0);
+//  Serial.print(" ");
+//  Serial.println(cmPerSec);
   
 }
 
