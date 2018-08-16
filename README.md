@@ -37,6 +37,8 @@ This is an open source project, with all public files available at <a href="http
       <ul>
         <h3>SPECS:</h3>
         <li>Ultra-high precision barometric pressure sensor detects altitude changes as small as 10cm</li>
+        <li>Measures altitude 84 times per second</li>
+          (72 while transmitting bluetooth data)
         <li>Lowest priced Bluetooth Variometer on the market</li>
         <li>iPhone users: Fully compatible with <a href="#flyskyhy">FlySkyHy</a> app</li>
         <li>Android users: <a href="#vspeed-vario">v^SPEED</a> app new in Google Play Store</li>
@@ -46,12 +48,11 @@ This is an open source project, with all public files available at <a href="http
           (Leash, and velcro for both riser and vario included)
         <li>Tiny Size: 68x25x10mm (about the size of a man's thumb)</li>
         <li>3D printed cover screws onto circuit board </li>
-          (Comes in black, or upon special request, White, yellow, or light blue)
         <li>Power switch, and volume buttons</li>
         <li>150mAh lipo battery with microUSB charging port</li>
         <li>10hr battery life while streaming bluetooth data</li>
         <li>1.5hr charging time</li>
-        <li>Sale price: $99 each (subject to change)</li>
+        <li>Sale price: $99 each</li>
       </ul>
     </td>
   </tr>
