@@ -61,8 +61,8 @@ This is an open source project, with all public files available at <a href="http
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
-- Install <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>
-- Download and extract the <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>files</a> in this repository
+- Click <a href="https://www.arduino.cc/en/Main/Software">HERE</a> to install Arduino IDE
+- Click <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>HERE</a> to download and extract the files in this repository
 - Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
 - Tools -> Boards Manager -> Search for: Arduino SAMD Boards -> Install
 - Tools -> Boards Manager -> Search for: Adafruit SAMD Boards -> Install
