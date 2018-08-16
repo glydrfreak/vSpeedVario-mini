@@ -1,5 +1,5 @@
 /*
- * SOURCE CODE UPDATED: 8/8/2018
+ * SOURCE CODE UPDATED: 8/16/2018
  */
 
 #include "MS5611.h"
@@ -74,6 +74,7 @@ bool bleFlag = true;
 unsigned long bleMillis = 0;
 int blePerSec = 30;
 int bleInterval = 1000/(float)blePerSec;
+bool measure_battery = 1;
 
 
 void setup() {
@@ -185,7 +186,7 @@ void loop() {
 
       //====BATTERY================================================================/
         //Measure battery level every 5 seconds
-        if(SETTING.MEASURE_BATTERY && millis()-battMillis>=5000){
+        if(measure_battery && millis()-battMillis>=5000){
           battMillis = millis();
           batteryLvl = getBatteryLvl();
           batteryPercent = (int)(batteryLvl*156.25 - 556.25);  //conversion to percent;
@@ -297,7 +298,7 @@ void loop() {
             //}
             bleMillis = millis();
             receiveCommands();    //Custom Bluetooth Commands Handled When Received From Mobile Devices
-            transmitVspeed(altitudeFt, velocityFtPerSec, SETTING.MEASURE_BATTERY, batteryLvl);       //Custom Bluetooth Transmissions to Mobile Devices
+            transmitVspeed(altitudeFt, velocityFtPerSec, measure_battery, batteryLvl);       //Custom Bluetooth Transmissions to Mobile Devices
           }
           
           else if(SETTING.BLUETOOTH_MODE==2 && millis()-bleMillis>bleInterval){ 
@@ -426,8 +427,8 @@ void receiveCommands(){
 
     if(command == "k"){SETTING.BLUETOOTH_MODE = 0;}  // Kill BLE connection
     
-    if(command == "V"){SETTING.MEASURE_BATTERY=1;}        // display supply power supply voltage
-    else if(command == "v"){SETTING.MEASURE_BATTERY=0;}  // display "0.00V" and don't calculate anything to improve samplesPerSec
+    if(command == "V"){measure_battery=1;}        // display supply power supply voltage
+    else if(command == "v"){measure_battery=0;}  // display "0.00V" and don't calculate anything to improve samplesPerSec
 
     if(command.startsWith("a")){
       // Example: "a250"

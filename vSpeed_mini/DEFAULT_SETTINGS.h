@@ -21,8 +21,6 @@ class Default{
     
     float SINK_PITCH_MAX         = 250.0;    // (Default 250.0 Hz)
     float SINK_PITCH_MIN         = 150.0;    // (Default 150.0 Hz)
-    
-    bool MEASURE_BATTERY             = 1;    // [1]YES, [0]NO
 
     int BLUETOOTH_MODE               = 0;    // [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
 
