@@ -61,8 +61,9 @@ This is an open source project, with all public files available at <a href="http
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
-- Click <a href="https://www.arduino.cc/en/Main/Software">HERE</a> to install Arduino IDE
-- Click <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>HERE</a> to download and extract the files in this repository
+- Arduino IDE is an integrated development environment, which compiles and executes written code. All the prewritten code used by the vario is included in the repository on this website. If you desire to change any settings on the vario, you must obtain a copy of this code and edit it through the Arduino IDE and re-upload it to the vario. 
+- Install Arduino IDE from <a href="https://www.arduino.cc/en/Main/Software">Arduino's website</a>
+- Click <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>HERE</a> to download and extract the code files in this repository
 - Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
 - Tools -> Boards Manager -> Search for: Arduino SAMD Boards -> Install
 - Tools -> Boards Manager -> Search for: Adafruit SAMD Boards -> Install
@@ -84,7 +85,7 @@ This is an open source project, with all public files available at <a href="http
 - <b>You're ready to fly!</b>
 
 
-### CUSTOM SETTINGS
+### HOW TO CHANGE CUSTOM SETTINGS
 - Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
 - Open the `DEFAULT_SETTINGS.h` tab
 - Change any of the following values according to your preference:
