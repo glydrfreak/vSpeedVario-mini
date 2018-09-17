@@ -71,8 +71,8 @@ This is an open source project, with all public files available at <a href="http
 - Tools ->  Board ->Boards Manager -> Search for: <i>Adafruit SAMD Boards</i> -> Install
 - Tools -> Board -> Select: Adafruit Feather M0
 - Connect your v^SPEED mini to your computer
+  - Some USB cables are "charge only" cables, which won't work for uploading code, so use the USB cable provided in the kit
   - The vario must be switched on
-  - The usb cable must not be a "charge only" cable
 - Tools -> Port -> Select any port for now
 - Sketch -> Upload
 - Anytime you power on your vario, or upload a new sketch, you will hear two sequences of beeps:
@@ -105,9 +105,10 @@ This is an open source project, with all public files available at <a href="http
   - `VELOCITY_UNITS`= <b>1</b>; Default [1]FEET_PER_SECOND, [2]METERS_PER_SECOND, [3] FEET_PER_MINUTE
 - Tools -> Board -> Select: Adafruit Feather M0
 - Connect your v^SPEED mini to your computer
+  - Some USB cables are "charge only" cables, which won't work for uploading code, so use the USB cable provided in the kit
   - The vario must be switched on
-  - The usb cable must not be a "charge only" cable
-- Tools -> Port -> Select the correct port
+- Tools -> Port -> Select the appropriate port 
+  - The port should be automatically renamed to "COM# (Adafruit Feather M0)"
 - Sketch -> Upload
 
 
@@ -117,7 +118,7 @@ This is an open source project, with all public files available at <a href="http
   - Hold the volume down button while powering on the vario until it beeps to boot up into Android mode.
   - Hold the volume up button while powering on the vario until it beeps to boot up into iPhone mode.
   - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
-    - You may change the default startup bluetooth mode by changing the `BLUETOOTH_START_UP_MODE` in `DEFAULT_SETTINGS.h` so you don't need to hold down a volume button each time you switch on the vario.
+    - You may change the default startup bluetooth mode by changing the `BLUETOOTH_MODE` in `DEFAULT_SETTINGS.h` so you don't need to hold down a volume button each time you switch on the vario.
 
 #### Android Users--
 - Download the <a href="https://play.google.com/store/apps/details?id=com.braedin.butler.vspeed.vario&hl=en_US">v^SPEED Vario app</a> from Google Play Store.
