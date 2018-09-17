@@ -65,8 +65,8 @@ This is an open source project, with all public files available at <a href="http
 - Install Arduino IDE from <a href="https://www.arduino.cc/en/Main/Software">Arduino's website</a>
 - Click <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>HERE</a> to download and extract the code files in this repository
 - Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
-- Tools -> Boards Manager -> Search for: Arduino SAMD Boards -> Install
-- Tools -> Boards Manager -> Search for: Adafruit SAMD Boards -> Install
+- Tools ->  Board ->Boards Manager -> Search for: <i>Arduino SAMD Boards</i> -> Install
+- Tools ->  Board ->Boards Manager -> Search for: <i>Adafruit SAMD Boards</i> -> Install
 - Tools -> Board -> Select: Adafruit Feather M0
 - Connect your v^SPEED mini to your computer
   - The vario must be switched on
