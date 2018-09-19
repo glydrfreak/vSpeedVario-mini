@@ -1,3 +1,5 @@
+9/19/2018 - (FILTER.h line 83 and vSpeed_mini.ino line 32.) The temperature of the sun was having a very negative effect on the vario as the device passed back and forth from sun to shadow. It would cause the vertical speed calculations to go crazy, and sometimes even crash the device. At the cost of sample rate from 77 to 68, I applied a filter to the temperature data as a 10 second running average. Hopefully this provides the fix.
+
 8/16/2018 - Got rid of the option to not measure battery level. It's just not nessesary to worry about with this prototype.
 
 8/8/2018 - Limitted the transmit rate to Flyskyhy to 30 times per second instead of full speed at 69 times per second. The app seems like it might have had a hard time keeping up and would sometimes glitch with incorrect altitude and/or lift readings at least once every flight. Hopefully this fixes it.

@@ -80,7 +80,7 @@ public:
 class FILTER4 {//TEMPERATURE:
 private:
   int samplesToAverage;
-  static const int maxDataMemory = 200;   // make this number as small as possible without clipping the quantity of samples to be averaged
+  static const int maxDataMemory = 1000;   // make this number as small as possible without clipping the quantity of samples to be averaged
   bool f1 = true;
   float previousData = 0;
   bool rejectBadData = false;     // If any new data is greater than rejectionThreshold away from the previous data, reject if true;

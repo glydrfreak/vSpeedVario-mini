@@ -1,5 +1,5 @@
 /*
- * SOURCE CODE UPDATED: 8/16/2018
+ * SOURCE CODE UPDATED: 9/19/2018
  */
 
 #include "MS5611.h"
@@ -29,7 +29,7 @@
 #define PRESSURE_FILTER_DURATION       0    // (AVERAGING DURATION: 1ms to 2000ms)
 #define ALTITUDE_FILTER_DURATION    1000    // (AVERAGING DURATION: 1ms to 2000ms)
 #define VSPEED_FILTER_DURATION       750    // (AVERAGING DURATION: 1ms to 2000ms)
-#define TEMPERATURE_FILTER_DURATION    0    // (AVERAGING DURATION: 1ms to 2000ms)
+#define TEMPERATURE_FILTER_DURATION   10000 // (AVERAGING DURATION: 1ms to 10000ms)
 
 
 Default SETTING;
@@ -263,7 +263,10 @@ void loop() {
         else{velocity=0;}
 
         //DEBUG:
-        //Serial.println(temperatureF); 
+        Serial.print(samplesPerSec);
+        Serial.print(" ");
+        Serial.print(temperatureF); 
+        Serial.print(" ");
         //Serial.println(pressurePa);
         Serial.print(altitude); 
         Serial.print(" "); 
