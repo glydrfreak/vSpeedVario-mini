@@ -159,7 +159,7 @@ This is an open source project, with all public files available at <a href="http
 
 
 ### FIRMWARE UPDATES
-#### Source code last updated: `9/19/2018`
+#### Source code last updated: `9/20/2018`
 - For the most up-to-date source code for your v^SPEED mini, download and extract the <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>files</a> in this repository and replace the existing files in your `vSpeed_mini` folder. 
 - You may want to keep your existing `DEFAULT_SETTINGS.h` file if you have made changes to it.
 - To see the most recent date that your existing code was updated, see the first line of code in `vSpeed_mini.ino`.
