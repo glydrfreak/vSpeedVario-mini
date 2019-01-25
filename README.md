@@ -6,12 +6,12 @@
       <h2>Contents:</h2>
       <a href="#about">About</a></br>
       <a href="#start-here">Start Here</a> </br>
-      <a href="#custom-settings">Custom Settings</a></br>
+      <a href="#how-to-change-custom-settings">Custom Settings</a></br>
       <a href="#bluetooth-operation">Bluetooth Operation</a> </br>
       <a href="#firmware-updates">Firmware Updates</a> </br>
     </td>
     <td>
-      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vSpeedMini3D.JPG" width=350>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350>
     </td>
     <td align="center" width=33%> 
       <h3>DIY Paragliding Variometer</h3>
@@ -45,7 +45,7 @@ This is an open source project, with all public files available at <a href="http
         <li>Fully compatiple with Arduino IDE to easily change custom settings</li>
           (Micro USB cable included)
         <li>Mounts on risers with velcro</li>
-          (Leash, and velcro for both riser and vario included)
+          (100lb test 0.55mm Dyneema Leash, and velcro wrap for both riser and vario included)
         <li>Tiny Size: 68x25x10mm (about the size of a man's thumb)</li>
         <li>3D printed cover screws onto circuit board </li>
         <li>Power switch, and volume buttons</li>
