@@ -2,7 +2,7 @@
   <tr>
     <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
-      <h3><a href="https://www.ebay.com/usr/glydrfreak">Shop</a></h3>
+      <h3><a href="https://www.vspeedvario.com">Shop</a></h3>
       <h2>Contents:</h2>
       <a href="#about">About</a></br>
       <a href="#start-here">Start Here</a> </br>
