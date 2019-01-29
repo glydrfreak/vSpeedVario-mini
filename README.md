@@ -31,7 +31,7 @@ This is an open source project, with all public files available at <a href="http
       <h2>v^SPEED VARIO mini</h2>
       <h3>$99</h3>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250>
-      <h2><a href="http://rover.ebay.com/rover/1/711-53200-19255-0/1?icep_ff3=2&pub=5575378759&campid=5338273189&customid=&icep_item=323406659347&ipn=psmain&icep_vectorid=229466&kwid=902099&mtid=824&kw=lg&toolid=11111">BUY NOW</a></h2></br>
+      <h2><a href="https://www.vspeedvario.com/store/p1/v%5ESpeed_mini.html">BUY NOW</a></h2></br>
     </td>
     <td width=66%> 
       <ul>
