@@ -42,12 +42,13 @@ This is an open source project, with all public files available at <a href="http
         <li>Lowest priced Bluetooth Variometer on the market</li>
         <li>iPhone users: Fully compatible with <a href="#flyskyhy">FlySkyHy</a> app</li>
         <li>Android users: <a href="#vspeed-vario">v^SPEED</a> app new in Google Play Store</li>
+          (XC Track compatibility coming soon)
         <li>Fully compatiple with Arduino IDE to easily change custom settings</li>
           (Micro USB cable included)
         <li>Mounts on risers with velcro</li>
           (100lb test 0.55mm Dyneema Leash, and velcro wrap for both riser and vario included)
         <li>Tiny Size: 68x25x10mm (about the size of a man's thumb)</li>
-        <li>3D printed cover screws onto circuit board </li>
+        <li>3D printed case (more colors coming soon)</li>
         <li>Power switch, and volume buttons</li>
         <li>150mAh lipo battery with microUSB charging port</li>
         <li>10hr battery life while streaming bluetooth data</li>
