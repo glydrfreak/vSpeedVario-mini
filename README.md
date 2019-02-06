@@ -3,15 +3,19 @@
     <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
       <h3><a href="https://www.vspeedvario.com">Shop</a></h3>
-      <h2>Instructions:</h2>
+      <h2>Usage and Instructions:</h2>
       <a href="#start-here">Start Here</a> </br>
       <a href="#how-to-change-custom-settings">Custom Settings</a></br>
       <a href="#bluetooth-operation">Bluetooth Operation</a> </br>
       <a href="#firmware-updates">Firmware Updates</a> </br>
     </td>
-    <td>
+  </tr>
+  <tr>
+    <td align="center" width=33%>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350>
     </td>
+  </tr>
+  <tr>
     <td align="center" width=33%> 
       <h3>DIY Paragliding Variometer</h3>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/logo.jpg" width=116> 
