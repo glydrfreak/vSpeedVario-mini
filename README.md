@@ -59,6 +59,12 @@ This is an open source project, with all public files available at <a href="http
   </tr>
 </table>
 
+### INSTRUCTIONS
+<a href="#start-here">Start Here</a> </br>
+<a href="#how-to-change-custom-settings">Custom Settings</a></br>
+<a href="#bluetooth-operation">Bluetooth Operation</a> </br>
+<a href="#firmware-updates">Firmware Updates</a> </br>
+
 
 ### START HERE
 #### Congrats on receiving your new v^SPEED Vario mini!
