@@ -2,7 +2,7 @@
   <tr>
     <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
-      <h3><a href="https://www.vspeedvario.com">Shop</a></h3>
+      <h3><a href="https://www.vspeedvario.com/shop">Shop</a></h3>
       <h2>Usage and Instructions:</h2>
       <a href="#start-here">Start Here</a> </br>
       <a href="#how-to-change-custom-settings">Custom Settings</a></br>
