@@ -19,13 +19,27 @@ void BEEP::basedOnVelocity(float currentAltitude, float velo, unsigned long curr
   //if(beepDuration > climbDurationLong){beepDuration = climbDurationLong;}
 
   //BEEP PITCH DEPENDS ON VELOCITY
-  beepPitch = (((pitchMax - pitchMin) / (mostClimb - leastClimb)) * (velo - leastClimb)) + pitchMin;
+  if((mostClimb - leastClimb)!=0){
+    beepPitch = (((pitchMax - pitchMin) / (mostClimb - leastClimb)) * (velo - leastClimb)) + pitchMin;
+    //Serial.print(" beepPitch:");
+    //Serial.print(beepPitch);
+    //Serial.print(" ");
+  }
+  else{
+    Serial.print("DIVIDE BY ZERO ERROR CLIMB");
+  }
   leastSink = sinkAlarm;
   mostSink = leastSink-10;
-  sinkPitch = (((sinkPitchMin - sinkPitchMax) / (mostSink - leastSink)) * (velo - leastSink)) + sinkPitchMax;
+  if((mostSink - leastSink)!=0){
+    sinkPitch = (((sinkPitchMin - sinkPitchMax) / (mostSink - leastSink)) * (velo - leastSink)) + sinkPitchMax;
+    if(sinkPitch < 10){sinkPitch = 10;}
+  }
+  else{
+    Serial.print("DIVIDE BY ZERO ERROR SINK");
+  }
   
   //ALLOW A BEEP IF CLIMBED MORE THAN A CERTAIN AMOUNT
-  if(currentAltitude - altitudeTriggerMemory >= verticalTrigger){
+  if(currentAltitude - altitudeTriggerMemory >= verticalTrigger && velo>0){
     
     //TELL THE BUZZER TO EITHER START OR CONTINUE TO BEEP
     needBeeps = true;
@@ -48,7 +62,10 @@ void BEEP::basedOnVelocity(float currentAltitude, float velo, unsigned long curr
   else if(currentAltitude - altitudeTriggerMemory < 0){altitudeTriggerMemory = currentAltitude;}
   
   //IF BEEP SHOULD BE BEEPING, EITHER START OR CONTINUE TO BEEP
-  if(needBeeps){tone(buzzerPin, beepPitch, (percentageOfCycleOn+0.5)*beepDuration);}
+  if(needBeeps && enableClimbBeep){
+    //Serial.print("NEED BEEPS");
+    tone(buzzerPin, beepPitch, (percentageOfCycleOn+0.5)*beepDuration);
+  }
 
   //PRINT DEBUG INFO
   //Serial.print("velo:"); Serial.print(velo); Serial.print(" needBeeps:"); Serial.print(needBeeps); Serial.print(" beepDuration:"); Serial.print(beepDuration); Serial.print(" beepPitch:"); Serial.println(beepPitch);
@@ -56,10 +73,16 @@ void BEEP::basedOnVelocity(float currentAltitude, float velo, unsigned long curr
   //LET THE BUZZER KNOW THAT IT HAS BEEPED LONG ENOUGH
   if(currentTime - beepMillis >= beepDuration){needBeeps = false; beepMillis = currentTime;}
   
-  //IF SINKING FASTER THAN SPECIFIED, INITIATE SINK ALARM
-  if(sinkPitch < 10){sinkPitch = 10;}
-  if(velo <= sinkAlarm){tone(buzzerPin, sinkPitch, sinkAlarmDuration);}
-    
+  
+  //IF SINKING AT FATAL RATE, INITIATE SINK ALARM
+  if(velo <= majorSinkAlarm && enableSinkAlarm){
+    tone(buzzerPin, sinkAlarmPitch, sinkAlarmDuration);
+  }
+
+  //ELSE IF SINKING FASTER THAN SPECIFIED, INITIATE SINK TONE
+  else if(velo <= sinkAlarm && enableSinkBeep){
+    tone(buzzerPin, sinkPitch, sinkAlarmDuration);
+  }   
 }
 
 
@@ -405,7 +428,9 @@ void BEEP::bufferedDurationIncrements(float currentAltitude, float velo, unsigne
   if(beepsWaitingToBeep > 0 && currentTime - beepMillis >= beepWait){
 
     //INITIATE A BEEP AT THE BUFFERED PITCH AND DURATION
-    tone(buzzerPin, beeps[PITCH][beepsWaitingToBeep-1], (percentageOfCycleOn+0.5)*beeps[DURATION][beepsWaitingToBeep-1]);
+    if(enableClimbBeep){
+      tone(buzzerPin, beeps[PITCH][beepsWaitingToBeep-1], (percentageOfCycleOn+0.5)*beeps[DURATION][beepsWaitingToBeep-1]);
+    }
 
     //PRINT WHAT JUST PLAYED
     //Serial.print(" >"); Serial.print(" W:"); Serial.print(currentTime - beepMillis); Serial.print(" (D:"); Serial.print(beeps[DURATION][beepsWaitingToBeep-1]); Serial.print(",P:"); Serial.print(beeps[PITCH][beepsWaitingToBeep-1]); Serial.println(")");
@@ -424,17 +449,23 @@ void BEEP::bufferedDurationIncrements(float currentAltitude, float velo, unsigne
 
   }
 
-  //IF SINKING FASTER THAN SPECIFIED, PREPARE SINK ALARM
-  if(velo <= sinkAlarm){
+  //IF SINKING FASTER THAN FATAL, INITIATE SINK ALARM
+  if(velo <= majorSinkAlarm && enableSinkAlarm){
+    tone(buzzerPin, sinkAlarmPitch, sinkAlarmDuration);
+  }
+
+  //ELSE IF SINKING FASTER THAN SPECIFIED, PREPARE SINK TONE
+  else if(velo <= sinkAlarm && enableSinkBeep){
     
     //PRINT DEBUG INFO
     //if(dbg){Serial.print(" *SINK* "); Serial.print(" velo:");Serial.print(velo); Serial.print(" d:"); Serial.print(sinkAlarmDuration); Serial.print(" p:"); Serial.println(sinkAlarmPitch);}
 
-    //SINK ALARM PITCH IS BASED ON VELOCITY
-    sinkAlarmPitch = ((((float)sinkPitchMin - (float)sinkPitchMax) / ((float)sinkAlarm-8.0 - (float)sinkAlarm)) * ((float)velo - (float)sinkAlarm)) + (float)sinkPitchMax;
+    //SINK PITCH IS BASED ON VELOCITY
+    sinkPitch = ((((float)sinkPitchMin - (float)sinkPitchMax) / ((float)sinkAlarm-8.0 - (float)sinkAlarm)) * ((float)velo - (float)sinkAlarm)) + (float)sinkPitchMax;
+    if(sinkPitch<10){sinkPitch=10;}
     
-    //INITIATE SINK ALARM
-    tone(buzzerPin, sinkAlarmPitch, sinkAlarmDuration);
+    //INITIATE SINK TONE
+    tone(buzzerPin, sinkPitch, sinkAlarmDuration);
   }
     
 }

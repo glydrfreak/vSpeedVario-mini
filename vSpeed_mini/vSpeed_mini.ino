@@ -75,6 +75,7 @@ unsigned long bleMillis = 0;
 int blePerSec = 30;
 int bleInterval = 1000/(float)blePerSec;
 bool measure_battery = 1;
+//float initialTemperature = 1;
 
 
 void setup() {
@@ -102,33 +103,47 @@ void setup() {
   }
   else{
     Serial.println("MS5611    initialized");
+    //initialTemperature = MS5611.getTemperatureF(D2_OSR);
   }
   
   BEEP.begin(BEEP_CTRL);
+  BEEP.setBeeps(SETTING.ENABLE_CLIMB_BEEP, SETTING.ENABLE_SINK_BEEP, SETTING.ENABLE_SINK_ALARM);
   BEEP.setClimbThreshold(SETTING.CLIMB_BEEP_TRIGGER);       //ft climbed
   BEEP.setSinkAlarmThreshold(SETTING.SINK_BEEP_TRIGGER);    //ft/s
+  BEEP.setMajorSinkAlarm(SETTING.SINK_ALARM_TRIGGER);         //ft/s
   BEEP.setClimbPitchMax(SETTING.CLIMB_PITCH_MAX);           //Hz
   BEEP.setClimbPitchMin(SETTING.CLIMB_PITCH_MIN);           //Hz
   BEEP.setSinkPitchMax(SETTING.SINK_PITCH_MAX);             //Hz
   BEEP.setSinkPitchMin(SETTING.SINK_PITCH_MIN);             //Hz
+  BEEP.setSinkAlarmPitch(SETTING.SINK_ALARM_PITCH);         //Hz
   Serial.println("BEEP      initialized");
 
   adjustVolumeTo(SETTING.START_UP_VOLUME);
   estimatedVolume = SETTING.START_UP_VOLUME;
 
-  if(analogRead(VOL_DOWN)<500){SETTING.BLUETOOTH_MODE = 1;} // Override to Android_v^SPEED mode;
-  else if(analogRead(VOL_UP)<500){SETTING.BLUETOOTH_MODE = 2;} // Override to iOS_Flyskyky mode;
-  if(SETTING.BLUETOOTH_MODE==1 || SETTING.BLUETOOTH_MODE==2){ 
+  if(analogRead(VOL_DOWN)<500 && analogRead(VOL_UP)>=500){SETTING.BLUETOOTH_MODE = 1;} // Override to Android_v^SPEED mode;
+  else if(analogRead(VOL_UP)<500 && analogRead(VOL_DOWN)>=500){SETTING.BLUETOOTH_MODE = 2;} // Override to iOS_Flyskyky mode;
+  else if(analogRead(VOL_UP)<500 && analogRead(VOL_DOWN)<500){SETTING.BLUETOOTH_MODE = 3;} // Override to Android_XCTrack mode;
+  if(SETTING.BLUETOOTH_MODE==1 || SETTING.BLUETOOTH_MODE==2 || SETTING.BLUETOOTH_MODE==3){ 
     if(!ble.begin(VERBOSE_MODE)){Serial.println("BLUETOOTH failed");}
     SWITCH_BLE_MODE(SETTING.BLUETOOTH_MODE);  //INITIALIZES THE SPECIFIED BLUETOOTH MODE; 
     Serial.print("BLUETOOTH initialized ");
     if(SETTING.BLUETOOTH_MODE==1){
-      Serial.println("(Android mode)");
+      Serial.println("(vSpeed mode)");
       tone(BEEP_CTRL, 500, 100);
       delay(1000);
     }
     if(SETTING.BLUETOOTH_MODE==2){
-      Serial.println("(iPhone mode)");
+      Serial.println("(FlySkyHy mode)");
+      tone(BEEP_CTRL, 500, 100);
+      delay(200);
+      tone(BEEP_CTRL, 500, 100);
+      delay(1000);
+    }
+    if(SETTING.BLUETOOTH_MODE==3){
+      Serial.println("(XCTrack mode)");
+      tone(BEEP_CTRL, 500, 100);
+      delay(200);
       tone(BEEP_CTRL, 500, 100);
       delay(200);
       tone(BEEP_CTRL, 500, 100);
@@ -205,11 +220,11 @@ void loop() {
             samplesPerSec, 
             TEMPERATURE_FILTER_DURATION
           );
-          //temperatureF = 77;
         }
         else{
           temperatureF = MS5611.getTemperatureF(D2_OSR);
           //temperatureF = (MS5611_I2C.readTemperature()*9/5.0)+32;
+          //temperatureF = initialTemperature;
         }
         
         //PRESSURE:
@@ -243,13 +258,14 @@ void loop() {
         }
 
         //VERTICAL SPEED:
-        if(millis()>7000){
+        if(millis()>8000){
           if(VSPEED_FILTER_DURATION){
             velocityFtPerSec = FILTER3.RUNNING_AVERAGE(
               MS5611.getVelocityFtPerSec(altitudeFt, millis()), 
               samplesPerSec, 
               VSPEED_FILTER_DURATION
             );
+            //velocityFtPerSec -= 0.1;
           }
           else{
             velocityFtPerSec = MS5611.getVelocityFtPerSec(altitudeFt, millis());
@@ -267,7 +283,8 @@ void loop() {
         Serial.print(" ");
         Serial.print(temperatureF); 
         Serial.print(" ");
-        //Serial.println(pressurePa);
+        Serial.print(pressurePa);
+        Serial.print(" "); 
         Serial.print(altitude); 
         Serial.print(" "); 
         Serial.println(velocity);     
@@ -276,7 +293,7 @@ void loop() {
 
       //====BEEP=================================================================/
       
-        if(SETTING.ENABLE_BEEP && millis()>7000){
+        if(millis()>8000){
           switch(SETTING.BEEP_TYPE){
             default: BEEP.basedOnVelocity(altitudeFt, velocityFtPerSec, millis());
             break;
@@ -288,7 +305,7 @@ void loop() {
 
 
       //====BLE====================================================================/ 
-        if(SETTING.BLUETOOTH_MODE==1 || SETTING.BLUETOOTH_MODE==2){
+        if(SETTING.BLUETOOTH_MODE==1 || SETTING.BLUETOOTH_MODE==2 || SETTING.BLUETOOTH_MODE==3){
           
           if(SETTING.BLUETOOTH_MODE==1 && millis()-bleMillis>bleInterval){
             //if(millis()>120000 && bleFlag){
@@ -308,6 +325,10 @@ void loop() {
             bleMillis = millis();
             //TODO -- Receive volume commands from Flyskyhy;
             transmitFlySkyHy(pressurePa, velocityFtPerSec, batteryPercent); 
+          }
+
+          else if(SETTING.BLUETOOTH_MODE==3 && millis()-bleMillis>bleInterval){
+            transmitXCTrack(pressurePa, velocityFtPerSec, batteryPercent);
           }
   
         }
@@ -528,7 +549,7 @@ void receiveCommands(){
 
    
     if(command == "B"){  // TURN BEEP ON
-      SETTING.ENABLE_BEEP = 1;
+      SETTING.ENABLE_CLIMB_BEEP = 1;
       //Serial.println("  beep:ON");
       for(float i = BEEP.pitchMin; i <= BEEP.pitchMax; i+=10){
         tone(BEEP_CTRL, i);
@@ -543,7 +564,7 @@ void receiveCommands(){
       }
       noTone(BEEP_CTRL);
       //Serial.println("  beep:OFF");
-      SETTING.ENABLE_BEEP = 0;       
+      SETTING.ENABLE_CLIMB_BEEP = 0;       
     }      
     
     
@@ -609,6 +630,65 @@ void transmitVspeed(float _altitudeFt, float _velocityFtPerSec, bool _measureBat
 }
 
 
+//v^SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED    
+//                                                                              //
+//         Custom Bluetooth Transmissions to XCTrack Android App:               //
+//                                                                              //
+//v^SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED
+void transmitXCTrack(float _pressurePa, float _velocityFtPerSec, int _batteryPercent){
+  
+  //EXAMPLE TRANSMISSION SENTENCE:
+  //$LK8EX1,98684,99999,-4,28,1100,*02<CR><LF>
+ 
+  //   where:
+  //   $LK8EX1 is keyword
+  //   98684 is filtered pressure in Pa relative to QNH1
+  //   99999 should be altitude relative to QNH but it is ignored when pressure is available
+  //   -4 is filtered vario in cm / s
+  //   28 is temperature in °C
+  //   1100 is battery percentage + 1000 (or 999 during charging)
+  //   *02 is nmea checksum
+  //   <CR><LF> CR and LF characters to terminate the line
+  
+  int cmPerSec = _velocityFtPerSec*30.48;
+
+  String str_out = String(
+    "LK8EX1" 
+    + String(",") 
+    + String(round(_pressurePa), DEC) 
+    + ",99999,"
+    + String(cmPerSec) 
+    + ",99,10"
+    + String(_batteryPercent, DEC) 
+    + String(",")
+  );
+   
+  unsigned int checksum_end, ai, bi;                                               // Calculating checksum for data string
+  for (checksum_end = 0, ai = 0; ai < str_out.length(); ai++)
+  {
+    bi = (unsigned char)str_out[ai];
+    checksum_end ^= bi;
+  }
+  //creating now NMEA serial output for LK8000. LK8EX1 protocol format:
+  //$LK8EX1,pressure,altitude,vario,temperature,battery,*checksum
+  Serial.print("$");                     //print first sign of NMEA protocol
+  Serial.print(str_out);                 // print data string
+  Serial.print("*");                     //end of protocol string
+  Serial.println(checksum_end, HEX);     //print calculated checksum on the end of the string in HEX
+  
+  ble.print("AT+GATTCHAR=1,$LK8EX1,");
+  ble.println(round(_pressurePa));
+  ble.print("AT+GATTCHAR=1,,99999,");
+  ble.println(cmPerSec);
+  ble.print("AT+GATTCHAR=1,,99,10");
+  ble.println(_batteryPercent);
+  ble.print("AT+GATTCHAR=1,");
+  ble.print(",*");
+  ble.print(checksum_end, HEX);
+  ble.println("<CR><LF>");
+
+}
+
 
 //v^SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED    
 //                                                                              //
@@ -665,9 +745,39 @@ void transmitFlySkyHy(float _pressurePa, float _velocityFtPerSec, int _batteryPe
 //                                                                              //
 //v^SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED
 void SWITCH_BLE_MODE(int bluetoothMode){
+
+  //TO ENABLE XCTRACK ANDROID TRANSMISSION MODE:
+  if(bluetoothMode==3){
+
+    //TO PERFORM FACTORY RESET:
+    if( !ble.factoryReset() ){ Serial.println(" COULD NOT FACTORY RESET "); while(1); }
   
-  //TO ENABLE FLYSKYHY TRANSMISSION MODE:
-  if(bluetoothMode==2){
+    //ADD NECESSARY ADVERTISING DATA:
+    ble.sendCommandCheckOK(F( "AT+GATTCLEAR" )); 
+    //                                          02-01-06-11-07-1B-C5-D5-A5-02-00-03-A9-E3-11-8B-AA-A0-C6-79-E0 SKYDROP ADV
+    //                                          02-01-06-11-07-FB-34-9B-5F-80-00-00-80-00-10-00-00-E0-FF-00-00 XCTRACER ADV
+    ble.sendCommandCheckOK(F( "AT+GAPSETADVDATA=02-01-06-11-07-1B-C5-D5-A5-02-00-03-A9-E3-11-8B-AA-A0-C6-79-E0" )); 
+
+    //ADD A BLUETOOTH SERVICE AND CHARACTERISTIC FOR XCTRACK COMPATIBILITY: (Same specs as XC Tracer Vario)
+    //                                                   E0-79-C6-A0-AA-8B-11-E3-A9-03-00-02-A5-D5-C5-1B XCTRACK SKYDROP SERVICE
+    //                                                   00-00-FF-E0-00-00-10-00-80-00-00-80-5F-9B-34-FB XCTRACK XCTRACER SERVICE
+    ble.sendCommandCheckOK(F( "AT+GATTADDSERVICE=UUID128=E0-79-C6-A0-AA-8B-11-E3-A9-03-00-02-A5-D5-C5-1B" ));
+    
+    //                                                B3-83-12-C0-AA-89-11-E3-9C-EF-00-02-A5-D5-C5-1B XCTRACK SKYDROP CHAR
+    //                                                00-00-FF-E1-00-00-10-00-80-00-00-80-5F-9B-34-FB XCTRACK XCTRACER CHAR
+    //                                                0xFFE1 FLYSKYHY SKYDROP CHAR
+    ble.sendCommandCheckOK(F( "AT+GATTADDCHAR=UUID=0xFFE1,PROPERTIES=0x10,MIN_LEN=7,MAX_LEN=20,VALUE=$LK8EX1" )); 
+    
+    //TO RENAME THE DEVICE, UNCOMMENT AND EDIT THE FOLLOWING:
+    ble.sendCommandCheckOK(F( "AT+GAPDEVNAME=SkyDrop BLE" )); ble.reset(); 
+  
+    //TO SEE WHAT BLE SERVICES AND CHARACTERISTICS ARE CURRENTLY SET:
+    ble.sendCommandCheckOK(F( "AT+GATTLIST" ));
+    
+  }
+  
+  //TO ENABLE FLYSKYHY IOS TRANSMISSION MODE:
+  else if(bluetoothMode==2){
 
     //TO PERFORM FACTORY RESET:
     if( !ble.factoryReset() ){ Serial.println(" COULD NOT FACTORY RESET "); while(1); }
@@ -677,6 +787,8 @@ void SWITCH_BLE_MODE(int bluetoothMode){
     ble.sendCommandCheckOK(F( "AT+GAPSETADVDATA=02-01-06-11-07-1B-C5-D5-A5-02-00-03-A9-E3-11-8B-AA-A0-C6-79-E0" )); 
 
     //ADD A BLUETOOTH SERVICE AND CHARACTERISTIC FOR FLYSKYHY COMPATIBILITY: (Same specs as SkyDrop Vario)
+    //                                                   E0-79-C6-A0-AA-8B-11-E3-A9-03-00-02-A5-D5-C5-1B XCTRACK SKYDROP SERVICE
+    //                                                   B3-83-12-C0-AA-89-11-E3-9C-EF-00-02-A5-D5-C5-1B XCTRACK SKYDROP CHAR
     ble.sendCommandCheckOK(F( "AT+GATTADDSERVICE=UUID128=E0-79-C6-A0-AA-8B-11-E3-A9-03-00-02-A5-D5-C5-1B" )); 
     ble.sendCommandCheckOK(F( "AT+GATTADDCHAR=UUID=0xFFE1,PROPERTIES=0x10,MIN_LEN=7,MAX_LEN=20,VALUE=$LK8EX1" )); 
     
@@ -688,7 +800,7 @@ void SWITCH_BLE_MODE(int bluetoothMode){
     
   }
 
-  //TO ENABLE ANDROID TRANSMISSION MODE:
+  //TO ENABLE VSPEED VARIO ANDROID TRANSMISSION MODE:
   else if(bluetoothMode==1){
     
     //TO PERFORM FACTORY RESET:

@@ -34,15 +34,19 @@ private:
   float mostClimb = 10.0;
   float leastSink = -1.0;
   float mostSink = -10.0;
-  //#define dbg  false               // set true when debugging is needed
-	int verticalTrigger = 1.0;		  // default feet
-	int sinkAlarm = -1.0;		        // default feet per second
-	int sinkAlarmDuration = 500;	// default milliseconds
-	int sinkAlarmPitch = 250;	    // default Hz
+  //#define dbg  false                // set true when debugging is needed
+	int verticalTrigger = 1.0;		      // default feet
+	int sinkAlarm = -1.0;		            // default feet per second
+  int majorSinkAlarm = -20;           // default feet per second
+	int sinkAlarmDuration = 500;	      // default milliseconds
+	int sinkAlarmPitch = 250;	          // default Hz
 	int sap = sinkAlarmPitch;	
-  float climbDurationShort = 50.0;	// default milliseconds
-	float climbDurationLong = 300.0;	// default milliseconds 
+  float climbDurationShort = 50.0;	  // default milliseconds
+	float climbDurationLong = 300.0;	  // default milliseconds 
   float prevDur = climbDurationLong;
+  bool enableSinkAlarm = true;
+  bool enableSinkBeep = true;
+  bool enableClimbBeep = true;
   
   
 
@@ -66,11 +70,17 @@ public:
   
   void setClimbThreshold(float VT){verticalTrigger = VT;}
   void setSinkAlarmThreshold(float SA){sinkAlarm = SA;}
+  void setMajorSinkAlarm(float MSA){majorSinkAlarm = MSA;}
   void setClimbPitchMax(float HUBP){pitchMax = HUBP;}
   void setClimbPitchMin(float LUBP){pitchMin = LUBP;}
   void setSinkPitchMax(float SPX){sinkPitchMax = SPX;}
   void setSinkPitchMin(float SPN){sinkPitchMin = SPN;}
-  //void setSinkAlarmPitch(float SAP){sinkAlarmPitch = SAP; sap = SAP;}
+  void setSinkAlarmPitch(float SAP){sinkAlarmPitch = SAP; sap = SAP;}
+  void setBeeps(bool ECB, bool ESB, bool ESA){
+    enableClimbBeep = ECB;
+    enableSinkBeep = ESB;
+    enableSinkAlarm = ESA;
+  }
   
 };
 
