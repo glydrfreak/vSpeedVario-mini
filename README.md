@@ -3,6 +3,7 @@
     <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
       <h3><a href="https://www.vspeedvario.com/shop">Shop</a></h3>
+      or contact vSpeedVario@gmail.com to purchase
       <h2>Usage and Instructions:</h2>
       <a href="#start-here">Start Here</a> </br>
       <a href="#how-to-change-custom-settings">Custom Settings</a></br>
@@ -88,8 +89,9 @@ This is an open source project, with all public files available at <a href="http
 - Anytime you power on your vario, or upload a new sketch, you will hear two sequences of beeps:
   - The first beep(s) indicates the bluetooth mode.
     - No beep: Bluetooth disabled
-    - One beep: Android mode
-    - Two beeps: iPhone mode
+    - One beep: vSpeed Android app mode
+    - Two beeps: FlySkyHy iPhone app mode
+    - Three beeps: XC Track Android app mode (not working yet)
   - The second series of beeps indicates the battery level.
     - Ascending: Battery is at least 66%
     - Steady: Battery is at least 33%
@@ -101,16 +103,20 @@ This is an open source project, with all public files available at <a href="http
 - Open the `vSpeed_mini.ino` file, which should open with the Arduino IDE
 - Open the `DEFAULT_SETTINGS.h` tab
 - Change any of the following values according to your preference:
-  - `ENABLE_BEEP`= <b>1</b>; [1]YES, [0]NO
+  - `ENABLE_CLIMB_BEEP`= <b>1</b>; [1]YES, [0]NO
+  - `ENABLE_SINK_BEEP`= <b>0</b>; [1]YES, [0]NO
+  - `ENABLE_SINK_ALARM`= <b>1</b>; [1]YES, [0]NO
   - `START_UP_VOLUME`= <b>10</b>; (0 TO 31)
-  - `BEEP_TYPE`= <b>1</b>; Default [1]BASED_ON_VELOCITY, [2]BUFFERED_INCREMENTS (Experimental)
+  - `BEEP_TYPE`= <b>1</b>; Default [1]BASED_ON_VELOCITY, [2]BUFFERED_INCREMENTS
   - `CLIMB_BEEP_TRIGGER`= <b>1.0</b>; (Default: One beep for every 1.0 foot of altitude increase)
   - `SINK_BEEP_TRIGGER`= <b>-1.0</b>; (Default: Constant beep if sinking more than -1.0 ft/s)
+  - `SINK_ALARM_TRIGGER`= <b>-20.0</b>; (Default: -20.0 ft/s)
   - `CLIMB_PITCH_MAX`= <b>600.0</b>; (Default: 600.0 Hz when climbing at ten ft/s)
   - `CLIMB_PITCH_MIN`= <b>400.0</b>; (Default: 400.0 Hz when climbing at one ft/s)
   - `SINK_PITCH_MAX`= <b>250.0</b>; (Default: 250.0 Hz when sinking at `SINK_BEEP_TRIGGER` ft/s)
   - `SINK_PITCH_MIN`= <b>150.0</b>; (Default: 150.0 Hz when sinking at ten ft/s less than `SINK_BEEP_TRIGGER` ft/s)
-  - `BLUETOOTH_MODE`= <b>0</b>; Default [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS
+  - `SINK_ALARM_PITCH`= <b>1000.0</b>; (Default 1000.0 Hz)
+  - `BLUETOOTH_MODE`= <b>2</b>; Default [0]DISABLE, [1]VSPEED_ANDROID, [2]FLYSKYHY_IOS (default), [3]XCTRACK_ANDROID (not working yet)
   - `ALTITUDE_UNITS`= <b>1</b>; Default [1]FEET, [2]METERS
   - `VELOCITY_UNITS`= <b>1</b>; Default [1]FEET_PER_SECOND, [2]METERS_PER_SECOND, [3] FEET_PER_MINUTE
 - Tools -> Board -> Select: Adafruit Feather M0
@@ -127,7 +133,8 @@ This is an open source project, with all public files available at <a href="http
 - You may change the bluetooth mode at startup:
   - Hold the volume down button while powering on the vario until it beeps to boot up into Android mode.
   - Hold the volume up button while powering on the vario until it beeps to boot up into iPhone mode.
-  - If no volume buttons are held down at startup, the default will be to disable the bluetooth transmission.
+  - Hold both the volume buttons while powering on the vario until it beeps to boot up into XC Track mode. (XC Track transmission is not working yet).
+  - If no volume buttons are held down at startup, the default mode (as shipped) will be to boot up into FlySkyHy transmission mode.
     - You may change the default startup bluetooth mode by changing the `BLUETOOTH_MODE` in `DEFAULT_SETTINGS.h` so you don't need to hold down a volume button each time you switch on the vario.
 
 #### Android Users--
@@ -169,7 +176,7 @@ This is an open source project, with all public files available at <a href="http
 
 
 ### FIRMWARE UPDATES
-#### Source code last updated: `9/20/2018`
+#### Source code last updated: `8/30/2019`
 - For the most up-to-date source code for your v^SPEED mini, download and extract the <a href="https://github.com/glydrfreak/vSpeedVario-mini/archive/master.zip" raw=true>files</a> in this repository and replace the existing files in your `vSpeed_mini` folder. 
 - You may want to keep your existing `DEFAULT_SETTINGS.h` file if you have made changes to it.
 - To see the most recent date that your existing code was updated, see the first line of code in `vSpeed_mini.ino`.
