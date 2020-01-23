@@ -44,9 +44,9 @@ This is an open source project, with all public files available at <a href="http
         <li>Measures altitude 84 times per second</li>
           (72 while transmitting bluetooth data)
         <li>Lowest priced Bluetooth Variometer on the market</li>
-        <li>iPhone users: Fully compatible with <a href="#flyskyhy">FlySkyHy</a> app</li>
-        <li>Android users: <a href="#vspeed-vario">v^SPEED</a> app new in Google Play Store</li>
-          (XC Track compatibility coming soon)
+        <li>iPhone users: Fully compatible with <a href="#flyskyhy">FlySkyHy</a> app (recommended)</li>
+        <li>Android users: <a href="#vspeed-vario">v^SPEED</a> app (experimental)</li>
+          (Recommended use is with FlySkyHy for iPhone)
         <li>Fully compatiple with Arduino IDE to easily change custom settings</li>
           (Micro USB cable included)
         <li>Mounts on risers with velcro</li>
