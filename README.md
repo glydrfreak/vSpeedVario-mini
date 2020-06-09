@@ -2,11 +2,11 @@
   <tr>
     <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
-      <h3><a href="https://www.vspeedvario.com/shop">Shop</a></h3>
-      or contact vSpeedVario@gmail.com to purchase
+      Open Source Paragliding Variometer</br>
+      Contact vSpeedVario@gmail.com to purchase</br>
       <h2>Usage and Instructions:</h2>
       <a href="#start-here">Start Here</a> </br>
-      <a href="#how-to-change-custom-settings">Custom Settings</a></br>
+      <a href="#how-to-change-custom-settings">Changing Settings</a></br>
       <a href="#bluetooth-operation">Bluetooth Operation</a> </br>
       <a href="#firmware-updates">Firmware Updates</a> </br>
     </td>
@@ -14,13 +14,6 @@
   <tr>
     <td align="center" width=33%>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width=33%> 
-      <h3>DIY Paragliding Variometer</h3>
-      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/logo.jpg" width=116> 
-      <h6>(Vertical Speed Indicator)</h6>
     </td>
   </tr>
 </table>
@@ -35,7 +28,7 @@ This is an open source project, with all public files available at <a href="http
       <h2>v^SPEED VARIO mini</h2>
       <h3>$99</h3>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250>
-      <h2><a href="https://www.vspeedvario.com/store/p1/v%5ESpeed_mini.html">BUY NOW</a></h2></br>
+      <h3>Contact vSpeedVario@gmail.com to purchase</h3>
     </td>
     <td width=66%> 
       <ul>
@@ -50,9 +43,9 @@ This is an open source project, with all public files available at <a href="http
         <li>Fully compatiple with Arduino IDE to easily change custom settings</li>
           (Micro USB cable included)
         <li>Mounts on risers with velcro</li>
-          (100lb test 0.55mm Dyneema Leash, and velcro wrap for both riser and vario included)
+          (100lb test 0.55mm Dyneema Leash, and velcro wrap for riser included)
         <li>Tiny Size: 68x25x10mm (about the size of a man's thumb)</li>
-        <li>3D printed case (more colors coming soon)</li>
+        <li>3D printed case (any color available upon request)</li>
         <li>Power switch, and volume buttons</li>
         <li>150mAh lipo battery with microUSB charging port</li>
         <li>10hr battery life while streaming bluetooth data</li>
@@ -65,7 +58,7 @@ This is an open source project, with all public files available at <a href="http
 
 ### INSTRUCTIONS
 <a href="#start-here">Start Here</a> </br>
-<a href="#how-to-change-custom-settings">Custom Settings</a></br>
+<a href="#how-to-change-custom-settings">Changing Settings</a></br>
 <a href="#bluetooth-operation">Bluetooth Operation</a> </br>
 <a href="#firmware-updates">Firmware Updates</a> </br>
 
@@ -158,7 +151,7 @@ This is an open source project, with all public files available at <a href="http
 
 #### iPhone Users--
 - Download <a href="https://itunes.apple.com/us/app/flyskyhy/id516879039?mt=8">Flyskyhy</a> from the App Store.
-- While selecting the external vario model, choose `Skydrop` for the time being.
+- While selecting the external vario model, choose `Skydrop`.
 <table>
   <tr>
     <td width=33% vAlign="top" align="center">
@@ -168,7 +161,7 @@ This is an open source project, with all public files available at <a href="http
     <td width=66%> 
       <ul>
         <h3>iOS App by Renevision--</h3>
-        v^SPEED Vario is now compatible with the World's most popular Paragliding app! Flyskyhy is an unbeatable iPhone application when it comes to flying. v^Speed Vario is currently using the same protocol as SkyDrop variometers, so in the app when selecting your device, you must choose SkyDrop for the time being.  
+        v^SPEED Vario is now compatible with the World's most popular Paragliding app! Flyskyhy is an unbeatable iPhone application when it comes to flying. v^Speed Vario is currently using the same protocol as SkyDrop variometers, so in the app when selecting your device, you must choose SkyDrop.  
       </ul>
     </td>
   </tr>
@@ -183,5 +176,5 @@ This is an open source project, with all public files available at <a href="http
 - a `changeLog.txt` is provided in the `vSpeed_mini` folder.
 
 
-### QUESTIONS / CONCERNS / ASSISTANCE
+### QUESTIONS / CONCERNS / ASSISTANCE / PURCHASE
 Email vSpeedVario@gmail.com </br>
