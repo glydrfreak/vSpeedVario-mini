@@ -17,7 +17,8 @@
     <td width=33% vAlign="top" align="center">
       <h2>v^SPEED VARIO mini</h2>
       <h3>$99</h3>
-      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250> </br>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350> </br>
       <h3>Contact vSpeedVario@gmail.com to purchase</h3>
     </td>
   </tr>
@@ -46,13 +47,6 @@
         <li>1.5hr charging time</li>
         <li>Sale price: $99 each</li>
       </ul>
-    </td>
-  </tr>
-</table>
-<table float="center">
-  <tr>
-    <td align="center" width=33%>
-      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350>
     </td>
   </tr>
 </table>
