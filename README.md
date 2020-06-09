@@ -2,8 +2,8 @@
   <tr>
     <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
-      Open Source Paragliding Variometer</br>
-      Contact vSpeedVario@gmail.com to purchase</br>
+      Open Source Paragliding Variometer.</br>
+      Contact vSpeedVario@gmail.com to purchase.</br>
       <h3>Usage and Instructions:</h3>
       <a href="#start-here">Start Here</a> </br>
       <a href="#how-to-change-custom-settings">Changing Settings</a></br>
