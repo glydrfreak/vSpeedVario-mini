@@ -4,16 +4,11 @@
       <h1>v^SPEED Vario mini</h1>
       Open Source Paragliding Variometer</br>
       Contact vSpeedVario@gmail.com to purchase</br>
-      <h2>Usage and Instructions:</h2>
+      <h3>Usage and Instructions:</h3>
       <a href="#start-here">Start Here</a> </br>
       <a href="#how-to-change-custom-settings">Changing Settings</a></br>
       <a href="#bluetooth-operation">Bluetooth Operation</a> </br>
       <a href="#firmware-updates">Firmware Updates</a> </br>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width=33%>
-      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350>
     </td>
   </tr>
 </table>
@@ -22,7 +17,7 @@
 ### ABOUT
 This is an open source project, with all public files available at <a href="https://github.com/glydrfreak/vSpeed-Vario">the vSpeed-Vario repository</a>. The v^SPEED mini is based on PROTOTYPE6, which is found within that same repository. This variometer was designed to be compatible with the Arduino IDE for advanced usage, which allows users to modify the existing source code to their pleasure. Here, in the repository you are currently viewing, you will find the most up-to-date source code for use in the Arduino IDE. The hardware is based on another open source product: <a href="https://learn.adafruit.com/adafruit-feather-m0-bluefruit-le/downloads">Adafruit's Bluefruit Feather M0</a>. The v^SPEED mini is basically just a Bluefruit Feather M0 development board, but without the header pins broken out, and with the added variometer circuitry.
 
-<table>
+<table float="center">
   <tr>
     <td width=33% vAlign="top" align="center">
       <h2>v^SPEED VARIO mini</h2>
@@ -30,6 +25,10 @@ This is an open source project, with all public files available at <a href="http
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250>
       <h3>Contact vSpeedVario@gmail.com to purchase</h3>
     </td>
+  </tr>
+</table>
+<table float="center">
+  <tr>
     <td width=66%> 
       <ul>
         <h3>SPECS:</h3>
@@ -52,6 +51,13 @@ This is an open source project, with all public files available at <a href="http
         <li>1.5hr charging time</li>
         <li>Sale price: $99 each</li>
       </ul>
+    </td>
+  </tr>
+</table>
+<table float="center">
+  <tr>
+    <td align="center" width=33%>
+      <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350>
     </td>
   </tr>
 </table>
