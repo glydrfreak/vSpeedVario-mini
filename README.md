@@ -3,7 +3,7 @@
     <td align="center" width=33%>
       <h1>v^SPEED Vario mini</h1>
       Open Source Paragliding Variometer.</br>
-      Contact vSpeedVario@gmail.com to purchase.</br>
+      Email <a href="mailto:vspeedvario@gmail.com">vSpeedVario@gmail.com</a> to purchase.</br>
       <h3>Usage and Instructions:</h3>
       <a href="#start-here">Start Here</a> </br>
       <a href="#how-to-change-custom-settings">Changing Settings</a></br>
@@ -19,7 +19,7 @@
       <h3>$99</h3>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/vspeedMini2.jpg" width=250> </br>
       <img src="https://github.com/glydrfreak/vSpeed-Vario/blob/master/Images/labels.jpg" width=350> </br>
-      <h3>Contact vSpeedVario@gmail.com to purchase</h3>
+      <h3>Email <a href="mailto:vspeedvario@gmail.com">vSpeedVario@gmail.com</a> to purchase</h3>
     </td>
   </tr>
 </table>
