@@ -1,3 +1,5 @@
+9/12/2020 - Something broke in the original MS5611 library. The issue could not be identified, so the library was replaced with an alternative after being optimized for speed.
+
 9/20/2018 - (Revert FILTER.h line 83 and vSpeed_mini.ino line 32.) The Temperature was not the problem. It was light hitting the sensor at just the right angle. Reverting changes to the software. Adding a fix for the hardware.
 
 9/19/2018 - (FILTER.h line 83 and vSpeed_mini.ino line 32.) The temperature of the sun was having a very negative effect on the vario as the device passed back and forth from sun to shadow. It would cause the vertical speed calculations to go crazy, and sometimes even crash the device. At the cost of sample rate from 77 to 68, I applied a filter to the temperature data as a 10 second running average. Hopefully this provides the fix.
